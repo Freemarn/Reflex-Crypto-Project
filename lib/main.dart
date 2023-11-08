@@ -616,6 +616,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                     color: Colors.grey.withOpacity(0.7),
                                   ),
                                 ),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.05),
+                                Image(
+                                  image: const AssetImage(
+                                      'lib/assets/images/multiple.png'),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                )
                               ],
                             ),
                           ],
@@ -2731,101 +2740,120 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.9,
-                decoration: const BoxDecoration(
-                  color: AppColors.headerTextColor,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                    ),
-                    const Text(
-                      'Our Partners',
-                      style: TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      child: Container(
-                        child: PageView(
-                          controller: pageController,
-                          onPageChanged: onPageChanged,
-                          scrollDirection: Axis.horizontal,
-                          children: const [
-                            PageOne(),
-                            PageTwo(),
-                            PageThree(),
-                            PageFour()
-                          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.9,
+                  decoration: const BoxDecoration(
+                    color: AppColors.headerTextColor,
+                  ),
+                  child: Column(
+                    
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                      const Text(
+                        'Our Partners',
+                        style: TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        child: Container(
+                          child: PageView(
+                            controller: pageController,
+                            onPageChanged: onPageChanged,
+                            scrollDirection: Axis.horizontal,
+                            children: const [
+                              PageOne(),
+                              PageTwo(),
+                              PageThree(),
+                              PageFour()
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    const Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'crypto',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  'Flex',
-                                  style: TextStyle(
-                                      color: AppColors.mainColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              'Take control of your financial security and\nstreamline your investments\nwith ease.',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 13),
-                            ),
-
-                           
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 15,
-                                  backgroundImage: AssetImage(''),
-                                )
-                              ],
-                            ),
-
-                             Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 15,
-                                  backgroundImage: AssetImage(''),
-                                )
-                              ],
-                            ),
-
-                             Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 15,
-                                  backgroundImage: AssetImage(''),
-                                )
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
+              
+                       SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height * 0.03,
+                                  ),
+                      Row(
+                      
+                        children: [
+                          Column(
+                            
+                            children: [
+                              const Row(
+                                children: [
+                                  Text(
+                                    'Crypto',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Flex',
+                                    style: TextStyle(
+                                        color: AppColors.mainColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+              
+                              SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height * 0.02,
+                                  ),
+              
+              
+                              Text(
+                                'Take control of your financial security and\nstreamline your investments\nwith ease.',
+                                style:
+                                    TextStyle(color: Colors.white, fontSize: 13),
+                              ),
+              
+                              SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height * 0.02,
+                                  ),
+                              Row(
+              
+                                children: [
+                                  const CircleAvatar(
+                                    radius: 15,
+                                    child: Icon(Icons.facebook_outlined, color: AppColors.headerTextColor,),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.008,
+                                  ),
+                                  const CircleAvatar(
+                                    radius: 15,
+                                    child: Icon(Icons.wechat_outlined, color: AppColors.headerTextColor,),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.008,
+                                  ),
+                                  const CircleAvatar(
+                                    radius: 15,
+                                    child: Icon(Icons.discord_outlined, color: AppColors.headerTextColor,),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
