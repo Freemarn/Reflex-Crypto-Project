@@ -3,6 +3,7 @@ import 'package:crypto_bomb/components/container_text.dart';
 import 'package:crypto_bomb/components/liveupdate_card.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
+import "package:flutter_animate/flutter_animate.dart";
 
 void main() {
   runApp(const MyApp());
@@ -117,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 image: DecorationImage(
                                     image: AssetImage(
                                         'lib/assets/images/en.jpeg'))),
-                          ),
+                          ).animate().fade().scale(),
                           const Text(
                             'En',
                             style: TextStyle(
@@ -259,14 +260,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           color: Colors.greenAccent),
-                                      child: const Center(
-                                          child: Text(
-                                        'Get Started',
-                                        style: TextStyle(
+                                      child: Center(
+                                        child: const Text(
+                                          'Get Started',
+                                          style: TextStyle(
                                             fontSize: 13,
                                             color: Colors.white,
-                                            fontWeight: FontWeight.w600),
-                                      )),
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        )
+                                            .animate()
+                                            .fadeIn(delay: 300.ms)
+                                            .slideX(),
+                                      ),
                                     )
                                   ],
                                 ),
@@ -284,7 +290,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                       MediaQuery.of(context).size.width * 0.2,
                                 ),
                               ],
-                            ),
+                            )
+                                .animate()
+                                .fadeIn(delay: 500.ms)
+                                .move(duration: 400.ms)
+                                .slide(duration: 500.ms)
+                                .scale(duration: 200.ms),
                           ],
                         ),
                         Padding(
@@ -295,53 +306,81 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               MiniCards(
-                                  imageUrl: 'lib/assets/images/eth.png',
-                                  imageText: 'Ethereum',
-                                  abbr: 'ETH',
-                                  currentPrice: '2,860.30',
-                                  changePrice: '-2.60',
-                                  vol: '345.21M',
-                                  changePriceColor: Colors.red,
-                                  borderColor: Colors.blue.withOpacity(0.4)),
+                                      imageUrl: 'lib/assets/images/eth.png',
+                                      imageText: 'Ethereum',
+                                      abbr: 'ETH',
+                                      currentPrice: '2,860.30',
+                                      changePrice: '-2.60',
+                                      vol: '345.21M',
+                                      changePriceColor: Colors.red,
+                                      borderColor: Colors.blue.withOpacity(0.4))
+                                  .animate()
+                                  .fadeIn(delay: 500.ms)
+                                  .move(duration: 50.ms)
+                                  .slide(duration: 500.ms)
+                                  .scale(duration: 200.ms),
                               MiniCards(
-                                  imageUrl: 'lib/assets/images/btc.webp',
-                                  imageText: 'Bitcoin',
-                                  abbr: 'BTC',
-                                  currentPrice: '35,260.30',
-                                  changePrice: '+3.44',
-                                  vol: '7060.32M',
-                                  changePriceColor: Colors.greenAccent,
-                                  borderColor: Colors.amber.withOpacity(0.4)),
+                                      imageUrl: 'lib/assets/images/btc.webp',
+                                      imageText: 'Bitcoin',
+                                      abbr: 'BTC',
+                                      currentPrice: '35,260.30',
+                                      changePrice: '+3.44',
+                                      vol: '7060.32M',
+                                      changePriceColor: Colors.greenAccent,
+                                      borderColor:
+                                          Colors.amber.withOpacity(0.4))
+                                  .animate()
+                                  .fadeIn(delay: 500.ms)
+                                  .move(duration: 100.ms)
+                                  .slide(duration: 500.ms)
+                                  .scale(duration: 200.ms),
                               MiniCards(
-                                  imageUrl: 'lib/assets/images/real sol.webp',
-                                  imageText: 'Solana',
-                                  abbr: 'SOL',
-                                  currentPrice: '260.30',
-                                  changePrice: '+2.60',
-                                  vol: '145.21M',
-                                  changePriceColor: Colors.greenAccent,
-                                  borderColor: Colors.blueGrey.shade900
-                                      .withOpacity(0.4)),
+                                      imageUrl:
+                                          'lib/assets/images/real sol.webp',
+                                      imageText: 'Solana',
+                                      abbr: 'SOL',
+                                      currentPrice: '260.30',
+                                      changePrice: '+2.60',
+                                      vol: '145.21M',
+                                      changePriceColor: Colors.greenAccent,
+                                      borderColor: Colors.blueGrey.shade900
+                                          .withOpacity(0.4))
+                                  .animate()
+                                  .fadeIn(delay: 500.ms)
+                                  .move(duration: 300.ms)
+                                  .slide(duration: 500.ms)
+                                  .scale(duration: 200.ms),
                               MiniCards(
-                                  imageUrl: 'lib/assets/images/uni.webp',
-                                  imageText: 'Uniswap',
-                                  abbr: 'UNI',
-                                  currentPrice: '1,160.00',
-                                  changePrice: '-6.10',
-                                  vol: '233.31M',
-                                  changePriceColor: Colors.red,
-                                  borderColor:
-                                      Colors.pinkAccent.withOpacity(0.4)),
+                                imageUrl: 'lib/assets/images/uni.webp',
+                                imageText: 'Uniswap',
+                                abbr: 'UNI',
+                                currentPrice: '1,160.00',
+                                changePrice: '-6.10',
+                                vol: '233.31M',
+                                changePriceColor: Colors.red,
+                                borderColor: Colors.pinkAccent.withOpacity(0.4),
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 500.ms)
+                                  .move(duration: 400.ms)
+                                  .slide(duration: 500.ms)
+                                  .scale(duration: 200.ms),
                               MiniCards(
-                                  imageUrl: 'lib/assets/images/polygon.webp',
-                                  imageText: 'Polygon',
-                                  abbr: 'MATIC',
-                                  currentPrice: '3,860.30',
-                                  changePrice: '+2.60',
-                                  vol: '345.2M',
-                                  changePriceColor: Colors.greenAccent,
-                                  borderColor:
-                                      AppColors.mainColor.withOpacity(0.4)),
+                                imageUrl: 'lib/assets/images/polygon.webp',
+                                imageText: 'Polygon',
+                                abbr: 'MATIC',
+                                currentPrice: '3,860.30',
+                                changePrice: '+2.60',
+                                vol: '345.2M',
+                                changePriceColor: Colors.greenAccent,
+                                borderColor:
+                                    AppColors.mainColor.withOpacity(0.4),
+                              )
+                                  .animate()
+                                  .fadeIn(delay: 500.ms)
+                                  .move(duration: 600.ms)
+                                  .slide(duration: 500.ms)
+                                  .scale(duration: 200.ms),
                             ],
                           ),
                         )
@@ -381,8 +420,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.08),
-                        const Image(
-                            image: AssetImage('lib/assets/images/bent.png')),
+                        SizedBox(
+                          child: const Image(
+                              image: AssetImage('lib/assets/images/bent.png')),
+                        )
+                            .animate(// loop
+                            )
+                            .fadeIn(delay: 500.ms)
+                            .then(delay: 200.ms)
+                            .move(duration: 400.ms)
+                            .then(delay: 200.ms)
+                            .slide(duration: 500.ms)
+                            .then(delay: 200.ms)
+                            .scale(duration: 200.ms),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -2330,7 +2380,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.035,
                                   decoration: BoxDecoration(
-                                     image: const DecorationImage(image: AssetImage('lib/assets/images/p1.jpg'), fit: BoxFit.cover),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/p1.jpg'),
+                                          fit: BoxFit.cover),
                                       gradient: LinearGradient(
                                         colors: [
                                           Colors.purple.withOpacity(0.1),
@@ -2341,7 +2394,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         end: Alignment.topRight,
                                       ),
                                       borderRadius: BorderRadius.circular(10)),
-                                 
                                 ),
                                 const Text(
                                   'Jessica B.',
@@ -2383,7 +2435,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.035,
                                   decoration: BoxDecoration(
-                                     image: const DecorationImage(image: AssetImage('lib/assets/images/p2.jpg'), fit: BoxFit.cover),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/p2.jpg'),
+                                          fit: BoxFit.cover),
                                       gradient: LinearGradient(
                                         colors: [
                                           Colors.purple.withOpacity(0.1),
@@ -2394,7 +2449,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         end: Alignment.topRight,
                                       ),
                                       borderRadius: BorderRadius.circular(10)),
-                                 
                                 ),
                                 const Text(
                                   'Elizabeth A.',
@@ -2436,7 +2490,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.035,
                                   decoration: BoxDecoration(
-                                     image: const DecorationImage(image: AssetImage('lib/assets/images/p3.jpg'), fit: BoxFit.cover),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/p3.jpg'),
+                                          fit: BoxFit.cover),
                                       gradient: LinearGradient(
                                         colors: [
                                           Colors.purple.withOpacity(0.2),
@@ -2446,7 +2503,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         end: Alignment.topRight,
                                       ),
                                       borderRadius: BorderRadius.circular(10)),
-                                  
                                 ),
                                 const Text(
                                   'Jake P.',
@@ -2467,12 +2523,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ],
                     ),
-
-                     SizedBox(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height * 0.05,
                     ),
-
-                     Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
@@ -2495,7 +2549,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.035,
                                   decoration: BoxDecoration(
-                                     image: const DecorationImage(image: AssetImage('lib/assets/images/p4.jpg'), fit: BoxFit.cover),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/p4.jpg'),
+                                          fit: BoxFit.cover),
                                       gradient: LinearGradient(
                                         colors: [
                                           Colors.purple.withOpacity(0.1),
@@ -2506,7 +2563,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         end: Alignment.topRight,
                                       ),
                                       borderRadius: BorderRadius.circular(10)),
-                                  
                                 ),
                                 const Text(
                                   'Joseph W.',
@@ -2528,7 +2584,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.015,
                         ),
-                          Container(
+                        Container(
                           height: MediaQuery.of(context).size.height * 0.26,
                           width: MediaQuery.of(context).size.height * 0.45,
                           decoration: BoxDecoration(
@@ -2548,7 +2604,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.035,
                                   decoration: BoxDecoration(
-                                     image: const DecorationImage(image: AssetImage('lib/assets/images/p5.jpg'), fit: BoxFit.cover),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/p5.jpg'),
+                                          fit: BoxFit.cover),
                                       gradient: LinearGradient(
                                         colors: [
                                           Colors.purple.withOpacity(0.1),
@@ -2559,7 +2618,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         end: Alignment.topRight,
                                       ),
                                       borderRadius: BorderRadius.circular(10)),
-                                  
                                 ),
                                 const Text(
                                   'Daniel S.',
@@ -2601,7 +2659,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.035,
                                   decoration: BoxDecoration(
-                                    image: const DecorationImage(image: AssetImage('lib/assets/images/p6.jpeg'), fit: BoxFit.cover),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'lib/assets/images/p6.jpeg'),
+                                          fit: BoxFit.cover),
                                       gradient: LinearGradient(
                                         colors: [
                                           Colors.purple.withOpacity(0.2),
@@ -2611,7 +2672,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         end: Alignment.topRight,
                                       ),
                                       borderRadius: BorderRadius.circular(10)),
-                                  
                                 ),
                                 const Text(
                                   'Shawn L.',
@@ -2635,12 +2695,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-
-               Container(
+              Container(
                 height: MediaQuery.of(context).size.height * 0.25,
                 color: AppColors.mainColor,
                 child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 85),
+                  padding: const EdgeInsets.symmetric(horizontal: 85),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -2651,24 +2710,21 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.white,
                             fontWeight: FontWeight.w900),
                       ),
-                     Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.1,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                   color: Colors.white
-                                  ),
-                                  child: const Center(
-                                      child: Text(
-                                    'Get Started',
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: AppColors.mainColor,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                                )
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white),
+                        child: const Center(
+                            child: Text(
+                          'Get Started',
+                          style: TextStyle(
+                              fontSize: 10,
+                              color: AppColors.mainColor,
+                              fontWeight: FontWeight.w600),
+                        )),
+                      )
                     ],
                   ),
                 ),
