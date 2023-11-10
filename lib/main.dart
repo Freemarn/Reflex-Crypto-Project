@@ -305,6 +305,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              
                               MiniCards(
                                       imageUrl: 'lib/assets/images/eth.png',
                                       imageText: 'Ethereum',
@@ -385,7 +386,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         )
                       ],
-                    )),
+                    ),),
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.25,
