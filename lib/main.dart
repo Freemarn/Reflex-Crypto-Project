@@ -1,6 +1,12 @@
+import 'dart:async';
+
 import 'package:crypto_bomb/components/benfits_card.dart';
 import 'package:crypto_bomb/components/container_text.dart';
 import 'package:crypto_bomb/components/liveupdate_card.dart';
+import 'package:crypto_bomb/components/page1.dart';
+import 'package:crypto_bomb/components/page2.dart';
+import 'package:crypto_bomb/components/page3.dart';
+import 'package:crypto_bomb/components/page4.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 import "package:flutter_animate/flutter_animate.dart";
@@ -35,6 +41,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _currpage = 0;
+  final pageController = PageController(
+    initialPage: 0,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(const Duration(seconds: 2), (timer) {
+      if (_currpage < 3) {
+        _currpage++;
+      } else {
+        _currpage = 0;
+      }
+
+      pageController.animateToPage(_currpage,
+          duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    pageController.dispose();
+  }
+
+  onPageChanged(int index) {
+    setState(() {
+      _currpage = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,14 +216,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 30,
                   horizontal: 85,
                 ),
                 child: Container(
-                    height: MediaQuery.of(context).size.height * 0.8,
+                    height: MediaQuery.of(context).size.height * 0.99,
                     decoration: const BoxDecoration(),
                     child: Column(
                       children: [
@@ -205,51 +243,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Take Control Of Your\n Investment Portfolio Using\n CryptoFlex.',
+                                      'Take Control Of Your Investment Portfolio Using\nCryptoFlex.',
                                       style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey.withOpacity(0.6),
-                                          fontWeight: FontWeight.w900),
+                                        fontSize: 15,
+                                        color: Colors.grey.withOpacity(0.6),
+                                      ),
                                     ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.05,
-                                    ),
-                                    // SizedBox(
-                                    //   width: MediaQuery.of(context).size.width *
-                                    //       0.27,
-                                    //   height:
-                                    //       MediaQuery.of(context).size.height *
-                                    //           0.08,
-                                    //   child: TextField(
-
-                                    //     decoration: InputDecoration(
-                                    //       focusedBorder: OutlineInputBorder(
-                                    //           borderRadius:
-                                    //               BorderRadius.circular(20),
-                                    //           borderSide: const BorderSide(
-                                    //               width: 2,
-                                    //               color: AppColors
-                                    //                   .fillAndBorderColor)),
-                                    //       enabledBorder: OutlineInputBorder(
-                                    //           borderRadius:
-                                    //               BorderRadius.circular(20),
-                                    //           borderSide: const BorderSide(
-                                    //               width: 2,
-                                    //               color: AppColors
-                                    //                   .fillAndBorderColor)),
-                                    //       filled: true,
-                                    //       fillColor:
-                                    //           AppColors.fillAndBorderColor,
-                                    //       hintText: '@ email address...',
-                                    //       hintStyle: TextStyle(
-                                    //         color: Colors.grey.withOpacity(0.7),
-                                    //         fontSize: 12,
-                                    //       ),
-                                    //     ),
-                                    //   ),
-                                    // ),
-
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.009,
+                                ),
+                                Row(
+                                  children: [
                                     Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.1,
@@ -266,28 +273,44 @@ class _MyHomePageState extends State<MyHomePage> {
                                           style: TextStyle(
                                             fontSize: 13,
                                             color: Colors.white,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        )
-                                            .animate()
-                                            .fadeIn(delay: 300.ms)
-                                            .slideX(),
-                                      ),
+                                            fontWeight: FontWeight.w600),
+                                      )),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.01,
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.1,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.08,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: AppColors.mainColor),
+                                      child: const Center(
+                                          child: Text(
+                                        'Login',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600),
+                                      )),
                                     )
                                   ],
-                                ),
+                                )
                               ],
                             ),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Image(
                                   image: const AssetImage(
-                                    'lib/assets/images/onboard2.png',
-                                  ),
+                                      'lib/assets/images/bent.png'),
                                   height:
-                                      MediaQuery.of(context).size.height * 0.5,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
+                                      MediaQuery.of(context).size.height * 0.74,
                                 ),
                               ],
                             )
@@ -299,9 +322,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 40,
-                          ),
+                          padding: const EdgeInsets.symmetric(),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -416,24 +437,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.9,
+                    height: MediaQuery.of(context).size.height * 0.35,
                     child: Row(
                       children: [
                         SizedBox(
                             width: MediaQuery.of(context).size.width * 0.08),
-                        SizedBox(
-                          child: const Image(
-                              image: AssetImage('lib/assets/images/bent.png')),
-                        )
-                            .animate(// loop
-                            )
-                            .fadeIn(delay: 500.ms)
-                            .then(delay: 200.ms)
-                            .move(duration: 400.ms)
-                            .then(delay: 200.ms)
-                            .slide(duration: 500.ms)
-                            .then(delay: 200.ms)
-                            .scale(duration: 200.ms),
+                        const Image(
+                            image: AssetImage('lib/assets/images/bent.png')),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -2342,14 +2352,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     const Text(
-                      'Hear from Our Customers',
+                      'Hear from Our Investors',
                       style: TextStyle(
                           fontSize: 40,
                           color: AppColors.headerTextColor,
                           fontWeight: FontWeight.w900),
                     ),
                     Text(
-                      'Don\'t just take our for it - read what our happy client\'s have to say\n                    about their expereince with CryptoFlex.',
+                      'Don\'t just take our word for it - read what our happy client\'s have to say\n                    about their expereince with CryptoFlex.',
                       style: TextStyle(
                           fontSize: 15,
                           color: Colors.grey.withOpacity(0.7),
@@ -2698,7 +2708,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.25,
-                color: AppColors.mainColor,
+                color: Colors.grey.withOpacity(0.2),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 85),
                   child: Row(
@@ -2708,7 +2718,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         'Unlock a new level\nof investment insight.',
                         style: TextStyle(
                             fontSize: 40,
-                            color: Colors.white,
+                            color: AppColors.headerTextColor,
                             fontWeight: FontWeight.w900),
                       ),
                       Container(
@@ -2726,6 +2736,122 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.w600),
                         )),
                       )
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.9,
+                  decoration: const BoxDecoration(
+                    color: AppColors.headerTextColor,
+                  ),
+                  child: Column(
+                    
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                      const Text(
+                        'Our Partners',
+                        style: TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        child: Container(
+                          child: PageView(
+                            controller: pageController,
+                            onPageChanged: onPageChanged,
+                            scrollDirection: Axis.horizontal,
+                            children: const [
+                              PageOne(),
+                              PageTwo(),
+                              PageThree(),
+                              PageFour()
+                            ],
+                          ),
+                        ),
+                      ),
+              
+                       SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height * 0.03,
+                                  ),
+                      Row(
+                      
+                        children: [
+                          Column(
+                            
+                            children: [
+                              const Row(
+                                children: [
+                                  Text(
+                                    'Crypto',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Flex',
+                                    style: TextStyle(
+                                        color: AppColors.mainColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+              
+                              SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height * 0.02,
+                                  ),
+              
+              
+                              Text(
+                                'Take control of your financial security and\nstreamline your investments\nwith ease.',
+                                style:
+                                    TextStyle(color: Colors.white, fontSize: 13),
+                              ),
+              
+                              SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height * 0.02,
+                                  ),
+                              Row(
+              
+                                children: [
+                                  const CircleAvatar(
+                                    radius: 15,
+                                    child: Icon(Icons.facebook_outlined, color: AppColors.headerTextColor,),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.008,
+                                  ),
+                                  const CircleAvatar(
+                                    radius: 15,
+                                    child: Icon(Icons.wechat_outlined, color: AppColors.headerTextColor,),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.008,
+                                  ),
+                                  const CircleAvatar(
+                                    radius: 15,
+                                    child: Icon(Icons.discord_outlined, color: AppColors.headerTextColor,),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ),
