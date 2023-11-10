@@ -10,10 +10,20 @@ import 'package:crypto_bomb/components/page4.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 import "package:flutter_animate/flutter_animate.dart";
+import 'package:animations/animations.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+
+
+class AppColors {
+  static const Color headerTextColor = Colors.black;
+  static const Color fillAndBorderColor = Colors.white;
+  static const Color mainColor = Colors.blue;
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -227,100 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     decoration: const BoxDecoration(),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Invest In Leading \nDigital Assets on CryptoFlex\nAnd Accrue Profit.',
-                                  style: TextStyle(
-                                      fontSize: 50,
-                                      color: AppColors.headerTextColor,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Take Control Of Your Investment Portfolio Using\nCryptoFlex.',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.grey.withOpacity(0.6),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.009,
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.08,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.greenAccent),
-                                      child: Center(
-                                        child: const Text(
-                                          'Get Started',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600),
-                                      )),
-                                    ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.01,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.08,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: AppColors.mainColor),
-                                      child: const Center(
-                                          child: Text(
-                                        'Login',
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600),
-                                      )),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image(
-                                  image: const AssetImage(
-                                      'lib/assets/images/bent.png'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.74,
-                                ),
-                              ],
-                            )
-                                .animate()
-                                .fadeIn(delay: 500.ms)
-                                .move(duration: 400.ms)
-                                .slide(duration: 500.ms)
-                                .scale(duration: 200.ms),
-                          ],
-                        ),
+                        HomeSection(),
                         Padding(
                           padding: const EdgeInsets.symmetric(),
                           child: Row(
@@ -336,11 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       vol: '345.21M',
                                       changePriceColor: Colors.red,
                                       borderColor: Colors.blue.withOpacity(0.4))
-                                  .animate()
-                                  .fadeIn(delay: 500.ms)
-                                  .move(duration: 50.ms)
-                                  .slide(duration: 500.ms)
-                                  .scale(duration: 200.ms),
+                                 , 
                               MiniCards(
                                       imageUrl: 'lib/assets/images/btc.webp',
                                       imageText: 'Bitcoin',
@@ -350,12 +263,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       vol: '7060.32M',
                                       changePriceColor: Colors.greenAccent,
                                       borderColor:
-                                          Colors.amber.withOpacity(0.4))
-                                  .animate()
-                                  .fadeIn(delay: 500.ms)
-                                  .move(duration: 100.ms)
-                                  .slide(duration: 500.ms)
-                                  .scale(duration: 200.ms),
+                                          Colors.amber.withOpacity(0.4),),
+                                 
+                                  
                               MiniCards(
                                       imageUrl:
                                           'lib/assets/images/real sol.webp',
@@ -366,12 +276,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       vol: '145.21M',
                                       changePriceColor: Colors.greenAccent,
                                       borderColor: Colors.blueGrey.shade900
-                                          .withOpacity(0.4))
-                                  .animate()
-                                  .fadeIn(delay: 500.ms)
-                                  .move(duration: 300.ms)
-                                  .slide(duration: 500.ms)
-                                  .scale(duration: 200.ms),
+                                          .withOpacity(0.4)),
                               MiniCards(
                                 imageUrl: 'lib/assets/images/uni.webp',
                                 imageText: 'Uniswap',
@@ -381,12 +286,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 vol: '233.31M',
                                 changePriceColor: Colors.red,
                                 borderColor: Colors.pinkAccent.withOpacity(0.4),
-                              )
-                                  .animate()
-                                  .fadeIn(delay: 500.ms)
-                                  .move(duration: 400.ms)
-                                  .slide(duration: 500.ms)
-                                  .scale(duration: 200.ms),
+                              ),
                               MiniCards(
                                 imageUrl: 'lib/assets/images/polygon.webp',
                                 imageText: 'Polygon',
@@ -398,11 +298,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderColor:
                                     AppColors.mainColor.withOpacity(0.4),
                               )
-                                  .animate()
-                                  .fadeIn(delay: 500.ms)
-                                  .move(duration: 600.ms)
-                                  .slide(duration: 500.ms)
-                                  .scale(duration: 200.ms),
                             ],
                           ),
                         )
@@ -2788,24 +2683,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Column(
                             
                             children: [
-                              const Row(
-                                children: [
-                                  Text(
-                                    'Crypto',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Flex',
-                                    style: TextStyle(
-                                        color: AppColors.mainColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                              CryptoFlex(),
               
                               SizedBox(
                                     height:
@@ -2859,5 +2737,118 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ));
+  }
+}
+
+class CryptoFlex extends StatelessWidget {
+  const CryptoFlex({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        AnimatedText(
+          text: 'Crypto',
+          textStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          duration: const Duration(seconds: 1),
+          curve: Curves.easeInOut,
+          repeat: true, // Add a repeated effect
+        ),
+        SizedBox(width: 5), // Add some space between the two animated texts
+        AnimatedText(
+          text: 'Flex',
+          textStyle: TextStyle(
+            color: AppColors.mainColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          duration: const Duration(seconds: 1),
+          curve: Curves.easeInOut,
+          repeat: true, // Add a repeated effect
+        ),
+      ],
+    );
+  }
+}
+
+
+class HomeSection extends StatelessWidget {
+  const HomeSection({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Invest In Leading \nDigital Assets on CryptoFlex\nAnd Accrue Profit.',
+              style: TextStyle(
+                fontSize: 50,
+                color: AppColors.headerTextColor,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            Row(
+              children: [
+                Text(
+                  'Take Control Of Your Investment Portfolio Using\nCryptoFlex.',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey.withOpacity(0.6),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.009,
+            ),
+            Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.greenAccent,
+                  ),
+                  child: Center(
+                    child: const Text(
+                      'Get Started',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ).animate().fadeIn().scale(),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image(
+              image: const AssetImage(
+                'lib/assets/images/bent.png', // Replace with your image path
+              ),
+              height: MediaQuery.of(context).size.height * 0.74,
+            ).animate().fadeIn(delay: 500.ms).move(duration: 400.ms).slide(duration: 500.ms).scale(duration: 200.ms),
+          ],
+        ),
+      ],
+    );
   }
 }
