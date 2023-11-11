@@ -375,6 +375,130 @@ class _MyHomePageState extends State<MyHomePage> {
                     )),
               ),
               Container(
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Achieve major financial goals with CryptoFlex.',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.headerTextColor),
+                    ),
+                    Text(
+                      'At CryptoFlex, we offer you.',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey.withOpacity(0.7),
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Column(
+                        children: [
+                          Image(
+                            image: const AssetImage(
+                                'lib/assets/images/stocks.png'),
+                            height: MediaQuery.of(context).size.height * 0.17,
+                          ),
+                          Text(
+                            'Market Analysis',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.withOpacity(0.7),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Column(
+                        children: [
+                          Image(
+                            image: AssetImage('lib/assets/images/options.png'),
+                            height: MediaQuery.of(context).size.height * 0.17,
+                          ),
+                          Text(
+                            'Trading Precision',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.withOpacity(0.7),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Column(
+                        children: [
+                          Image(
+                            image: AssetImage('lib/assets/images/futures.png'),
+                            height: MediaQuery.of(context).size.height * 0.17,
+                          ),
+                          Text(
+                            'Profitable Trades',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.withOpacity(0.7),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Column(
+                        children: [
+                          Image(
+                            image: AssetImage('lib/assets/images/crypt.png'),
+                            height: MediaQuery.of(context).size.height * 0.17,
+                          ),
+                          Text(
+                            'Powerful Security',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.withOpacity(0.7),
+                            ),
+                          )
+                        ],
+                      ),
+                    ]),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.08,
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border:
+                              Border.all(width: 1, color: Colors.lightBlue)),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            'Open Account',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.lightBlue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
                 height: MediaQuery.of(context).size.height * 0.25,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 85),
@@ -587,10 +711,13 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding: EdgeInsets.only(
                                   top:
                                       MediaQuery.of(context).size.height * 0.2),
-                              child: const Image(
-                                  image: AssetImage(
-                                'lib/assets/images/onboard2.png',
-                              )),
+                              child: Image(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5,
+                                  image: const AssetImage(
+                                    'lib/assets/images/onboard2.png',
+                                    //'lib/assets/images/Graph.png',
+                                  )),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1084,6 +1211,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     )),
               ),
+             
               Container(
                 height: MediaQuery.of(context).size.height * 0.99,
                 color: Colors.grey.withOpacity(0.2),
@@ -2740,120 +2868,119 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.9,
-                  decoration: const BoxDecoration(
-                    color: AppColors.headerTextColor,
-                  ),
-                  child: Column(
-                    
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                      ),
-                      const Text(
-                        'Our Partners',
-                        style: TextStyle(
-                            fontSize: 50,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        child: Container(
-                          child: PageView(
-                            controller: pageController,
-                            onPageChanged: onPageChanged,
-                            scrollDirection: Axis.horizontal,
-                            children: const [
-                              PageOne(),
-                              PageTwo(),
-                              PageThree(),
-                              PageFour()
-                            ],
-                          ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.9,
+                decoration: const BoxDecoration(
+                  color: AppColors.headerTextColor,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                    ),
+                    const Text(
+                      'Our Partners',
+                      style: TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      child: Container(
+                        child: PageView(
+                          controller: pageController,
+                          onPageChanged: onPageChanged,
+                          scrollDirection: Axis.horizontal,
+                          children: const [
+                            PageOne(),
+                            PageTwo(),
+                            PageThree(),
+                            PageFour()
+                          ],
                         ),
                       ),
-              
-                       SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.height * 0.03,
-                                  ),
-                      Row(
-                      
-                        children: [
-                          Column(
-                            
-                            children: [
-                              const Row(
-                                children: [
-                                  Text(
-                                    'Crypto',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Flex',
-                                    style: TextStyle(
-                                        color: AppColors.mainColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-              
-                              SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.height * 0.02,
-                                  ),
-              
-              
-                              Text(
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.04,
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            const Row(
+                              children: [
+                                Text(
+                                  'Crypto',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'Flex',
+                                  style: TextStyle(
+                                      color: AppColors.mainColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left:
+                                      MediaQuery.of(context).size.width * 0.06),
+                              child: const Text(
                                 'Take control of your financial security and\nstreamline your investments\nwith ease.',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 13),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 13),
                               ),
-              
-                              SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.height * 0.02,
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                            Row(
+                              children: [
+                                const CircleAvatar(
+                                  radius: 15,
+                                  child: Icon(
+                                    Icons.facebook_outlined,
+                                    color: AppColors.headerTextColor,
                                   ),
-                              Row(
-              
-                                children: [
-                                  const CircleAvatar(
-                                    radius: 15,
-                                    child: Icon(Icons.facebook_outlined, color: AppColors.headerTextColor,),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.008,
+                                ),
+                                const CircleAvatar(
+                                  radius: 15,
+                                  child: Icon(
+                                    Icons.wechat_outlined,
+                                    color: AppColors.headerTextColor,
                                   ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.008,
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.008,
+                                ),
+                                const CircleAvatar(
+                                  radius: 15,
+                                  child: Icon(
+                                    Icons.discord_outlined,
+                                    color: AppColors.headerTextColor,
                                   ),
-                                  const CircleAvatar(
-                                    radius: 15,
-                                    child: Icon(Icons.wechat_outlined, color: AppColors.headerTextColor,),
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.008,
-                                  ),
-                                  const CircleAvatar(
-                                    radius: 15,
-                                    child: Icon(Icons.discord_outlined, color: AppColors.headerTextColor,),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
