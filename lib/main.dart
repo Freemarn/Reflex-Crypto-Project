@@ -233,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'Invest In Leading \nDigital Assets on CryptoFlex\nAnd Accrue Profit.',
                                   style: TextStyle(
                                       fontSize: 50,
@@ -311,7 +311,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       'lib/assets/images/bent.png'),
                                   height:
                                       MediaQuery.of(context).size.height * 0.74,
-                                ).animate(onComplete: (controller) => controller.repeat(),).rotate(alignment: Alignment.topRight),
+                                ).animate().fadeIn(duration: 600.ms).slideX(begin: 1),
                               ],
                             ),
                           ],
@@ -329,7 +329,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   changePrice: '-2.60',
                                   vol: '345.21M',
                                   changePriceColor: Colors.red,
-                                  borderColor: Colors.blue.withOpacity(0.4)),
+                                  borderColor: Colors.blue.withOpacity(0.4)).animate().fadeIn(duration: 600.ms).slideY(),
                               MiniCards(
                                   imageUrl: 'lib/assets/images/btc.webp',
                                   imageText: 'Bitcoin',
@@ -338,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   changePrice: '+3.44',
                                   vol: '7060.32M',
                                   changePriceColor: Colors.greenAccent,
-                                  borderColor: Colors.amber.withOpacity(0.4)),
+                                  borderColor: Colors.amber.withOpacity(0.4)).animate().fadeIn(duration: 600.ms).slideY(),
                               MiniCards(
                                   imageUrl: 'lib/assets/images/real sol.webp',
                                   imageText: 'Solana',
@@ -348,7 +348,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   vol: '145.21M',
                                   changePriceColor: Colors.greenAccent,
                                   borderColor: Colors.blueGrey.shade900
-                                      .withOpacity(0.4)),
+                                      .withOpacity(0.4)).animate().fadeIn(duration: 600.ms).slideY(),
                               MiniCards(
                                   imageUrl: 'lib/assets/images/uni.webp',
                                   imageText: 'Uniswap',
@@ -358,7 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   vol: '233.31M',
                                   changePriceColor: Colors.red,
                                   borderColor:
-                                      Colors.pinkAccent.withOpacity(0.4)),
+                                      Colors.pinkAccent.withOpacity(0.4)).animate().fadeIn(duration: 600.ms).slideY(),
                               MiniCards(
                                   imageUrl: 'lib/assets/images/polygon.webp',
                                   imageText: 'Polygon',
@@ -368,7 +368,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   vol: '345.2M',
                                   changePriceColor: Colors.greenAccent,
                                   borderColor:
-                                      AppColors.mainColor.withOpacity(0.4)),
+                                      AppColors.mainColor.withOpacity(0.4)).animate().fadeIn(duration: 600.ms).slideY(),
                             ],
                           ),
                         )
