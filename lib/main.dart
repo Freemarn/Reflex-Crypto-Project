@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:crypto_bomb/components/benfits_card.dart';
 import 'package:crypto_bomb/components/container_text.dart';
@@ -40,7 +41,11 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _rotationTween;
+
   int _currpage = 0;
   final pageController = PageController(
     initialPage: 0,
@@ -59,11 +64,28 @@ class _MyHomePageState extends State<MyHomePage> {
       pageController.animateToPage(_currpage,
           duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
     });
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+
+    _rotationTween =
+        Tween(begin: 0.0, end: 2 * pi).animate(_animationController);
+
+    _animationController.forward();
+
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _animationController.reset();
+      }
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
+    _animationController.dispose();
     pageController.dispose();
   }
 
@@ -248,7 +270,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontSize: 15,
                                         color: Colors.grey.withOpacity(0.6),
                                       ),
-                                    ).animate().fadeIn(duration: 600.ms).slideX(),
+                                    )
+                                        .animate()
+                                        .fadeIn(duration: 600.ms)
+                                        .slideX(),
                                   ],
                                 ),
                                 SizedBox(
@@ -311,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       'lib/assets/images/bent.png'),
                                   height:
                                       MediaQuery.of(context).size.height * 0.74,
-                                ).animate().fadeIn(duration: 600.ms).slideX(begin: 1),
+                                )
                               ],
                             ),
                           ],
@@ -2931,8 +2956,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ],
                             ),
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.02,
+                              height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             const Text(
                               'Take control of your financial security and\nstreamline your investments\nwith ease.',
@@ -2942,8 +2966,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   fontWeight: FontWeight.w400),
                             ),
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.02,
+                              height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             Row(
                               children: [
@@ -2955,8 +2978,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      0.008,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.008,
                                 ),
                                 const CircleAvatar(
                                   radius: 15,
@@ -2966,8 +2989,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      0.008,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.008,
                                 ),
                                 const CircleAvatar(
                                   radius: 15,
@@ -3218,9 +3241,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Row(children: [
-                       SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.065,
-                    ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.065,
+                      ),
                       const Icon(
                         Icons.copyright_outlined,
                         size: 12,
@@ -3247,41 +3270,36 @@ class _MyHomePageState extends State<MyHomePage> {
                             fontSize: 13,
                             fontWeight: FontWeight.w400),
                       ),
-
-
                       SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.44,
-                    ),
-
-                    Row(children: [
-                       SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.05,
-                    ),
-                      const Text(
-                        'Terms of Service   ',
-                        style: TextStyle(
-                            color: AppColors.cardTextColor,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
+                        width: MediaQuery.of(context).size.width * 0.44,
                       ),
-                      const Text(
-                        'Policy service   ',
-                        style: TextStyle(
-                            color: AppColors.cardTextColor,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      const Text(
-                        'Cookie policy',
-                        style: TextStyle(
-                            color: AppColors.cardTextColor,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ])
+                      Row(children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.05,
+                        ),
+                        const Text(
+                          'Terms of Service   ',
+                          style: TextStyle(
+                              color: AppColors.cardTextColor,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        const Text(
+                          'Policy service   ',
+                          style: TextStyle(
+                              color: AppColors.cardTextColor,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        const Text(
+                          'Cookie policy',
+                          style: TextStyle(
+                              color: AppColors.cardTextColor,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        )
+                      ])
                     ]),
-
-                     
                   ],
                 ),
               ),
