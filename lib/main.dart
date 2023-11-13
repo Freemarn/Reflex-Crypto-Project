@@ -211,7 +211,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 )
               ],
-            ),
+            ).animate().fadeIn(duration: 600.ms).slideX(),
           ),
         ),
         body: SingleChildScrollView(
