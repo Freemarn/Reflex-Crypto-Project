@@ -41,7 +41,8 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _rotationTween;
 
@@ -69,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       duration: Duration(seconds: 2),
     );
 
-    _rotationTween = Tween(begin: 0.0, end: 2 * pi).animate(_animationController);
+    _rotationTween =
+        Tween(begin: 0.0, end: 2 * pi).animate(_animationController);
 
     _animationController.forward();
 
@@ -92,8 +94,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       _currpage = index;
     });
   }
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -270,7 +270,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                                         fontSize: 15,
                                         color: Colors.grey.withOpacity(0.6),
                                       ),
-                                    ).animate().fadeIn(duration: 600.ms).slideX(),
+                                    )
+                                        .animate()
+                                        .fadeIn(duration: 600.ms)
+                                        .slideX(),
                                   ],
                                 ),
                                 SizedBox(
@@ -328,10 +331,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-RotationTransition(
-      turns: _rotationTween,
-      child: Image.asset('lib/assets/images/bent.png'),
-    ),
+                                RotationTransition(
+                                  turns: _rotationTween,
+                                  child:
+                                      Image.asset('lib/assets/images/bent.png'),
+                                ),
                                 // Image(
                                 //   image: const AssetImage(
                                 //       'lib/assets/images/bent.png'),
@@ -2957,8 +2961,7 @@ RotationTransition(
                               ],
                             ),
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.02,
+                              height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             const Text(
                               'Take control of your financial security and\nstreamline your investments\nwith ease.',
@@ -2968,8 +2971,7 @@ RotationTransition(
                                   fontWeight: FontWeight.w400),
                             ),
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.02,
+                              height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             Row(
                               children: [
@@ -2981,8 +2983,8 @@ RotationTransition(
                                   ),
                                 ),
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      0.008,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.008,
                                 ),
                                 const CircleAvatar(
                                   radius: 15,
@@ -2992,8 +2994,8 @@ RotationTransition(
                                   ),
                                 ),
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      0.008,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.008,
                                 ),
                                 const CircleAvatar(
                                   radius: 15,
@@ -3244,9 +3246,9 @@ RotationTransition(
                       height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Row(children: [
-                       SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.065,
-                    ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.065,
+                      ),
                       const Icon(
                         Icons.copyright_outlined,
                         size: 12,
@@ -3273,41 +3275,36 @@ RotationTransition(
                             fontSize: 13,
                             fontWeight: FontWeight.w400),
                       ),
-
-
                       SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.44,
-                    ),
-
-                    Row(children: [
-                       SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.05,
-                    ),
-                      const Text(
-                        'Terms of Service   ',
-                        style: TextStyle(
-                            color: AppColors.cardTextColor,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
+                        width: MediaQuery.of(context).size.width * 0.44,
                       ),
-                      const Text(
-                        'Policy service   ',
-                        style: TextStyle(
-                            color: AppColors.cardTextColor,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      const Text(
-                        'Cookie policy',
-                        style: TextStyle(
-                            color: AppColors.cardTextColor,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ])
+                      Row(children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.05,
+                        ),
+                        const Text(
+                          'Terms of Service   ',
+                          style: TextStyle(
+                              color: AppColors.cardTextColor,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        const Text(
+                          'Policy service   ',
+                          style: TextStyle(
+                              color: AppColors.cardTextColor,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        const Text(
+                          'Cookie policy',
+                          style: TextStyle(
+                              color: AppColors.cardTextColor,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400),
+                        )
+                      ])
                     ]),
-
-                     
                   ],
                 ),
               ),
