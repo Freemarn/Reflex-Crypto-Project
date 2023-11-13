@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:crypto_bomb/components/benfits_card.dart';
 import 'package:crypto_bomb/components/container_text.dart';
@@ -40,7 +41,10 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+  late AnimationController _animationController;
+  late Animation<double> _rotationTween;
+
   int _currpage = 0;
   final pageController = PageController(
     initialPage: 0,
@@ -59,11 +63,27 @@ class _MyHomePageState extends State<MyHomePage> {
       pageController.animateToPage(_currpage,
           duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
     });
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+
+    _rotationTween = Tween(begin: 0.0, end: 2 * pi).animate(_animationController);
+
+    _animationController.forward();
+
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _animationController.reset();
+      }
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
+    _animationController.dispose();
     pageController.dispose();
   }
 
@@ -72,6 +92,8 @@ class _MyHomePageState extends State<MyHomePage> {
       _currpage = index;
     });
   }
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -306,12 +328,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Image(
-                                  image: const AssetImage(
-                                      'lib/assets/images/bent.png'),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.74,
-                                ).animate(onComplete: (controller) => controller.repeat(),).rotate(alignment: Alignment.topRight),
+RotationTransition(
+      turns: _rotationTween,
+      child: Image.asset('lib/assets/images/bent.png'),
+    ),
+                                // Image(
+                                //   image: const AssetImage(
+                                //       'lib/assets/images/bent.png'),
+                                //   height:
+                                //       MediaQuery.of(context).size.height * 0.74,
+                                // ).animate(onComplete: (controller) => controller.repeat(),).rotate(alignment: Alignment.topRight),
                               ],
                             ),
                           ],
