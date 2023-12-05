@@ -8,7 +8,7 @@ class PageTwo extends StatelessWidget {
     return Row(
        mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Image.asset('lib/assets/images/binance.png'), Image.asset('lib/assets/images/trustwallet.png'), Image.asset('lib/assets/images/luno.png'), Image.asset('lib/assets/images/coinmama.png'),
+        Image.asset('lib/assets/images/binance.png'), Image.asset('lib/assets/images/trustwallet.png'), Image.asset('lib/assets/images/luno.png'), Image.asset('lib/assets/images/krak.png'),
       ],
     );
   }

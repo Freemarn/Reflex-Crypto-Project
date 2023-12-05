@@ -1,4 +1,3 @@
-import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hexagon/hexagon.dart';
 
@@ -33,7 +32,7 @@ class MiniCards extends StatelessWidget {
                                   children: [
                                     HexagonWidget.pointy(
                                       width: 20,
-                                      color: AppColors.cardTextColor,
+                                       color: Colors.black.withOpacity(0.8),
                                       elevation: 0,
                                       child: Image(
                                           image:
@@ -51,10 +50,10 @@ class MiniCards extends StatelessWidget {
                                           style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                              color: AppColors.headerTextColor),
+                                              color:   Colors.white,),
                                         ),
                                                 
-                                        Text(abbr, style: const TextStyle(color: AppColors.cardTextColor, fontWeight: FontWeight.w500, fontSize: 11),)
+                                        Text(abbr, style: const TextStyle(color:  Colors.white, fontWeight: FontWeight.w500, fontSize: 11),)
                                       ],
                                     )
                                   ],
@@ -64,22 +63,22 @@ class MiniCards extends StatelessWidget {
                                Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text(currentPrice, style: const TextStyle(fontSize: 13, color: AppColors.headerTextColor, fontWeight: FontWeight.bold),),
+                                  Text(currentPrice, style: const TextStyle(fontSize: 13, color: Colors.white, fontWeight: FontWeight.bold),),
                   
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
-                                          const Text('CHG', style: TextStyle(color: AppColors.cardTextColor, fontSize: 11),),
-                                          Text(changePrice, style: TextStyle(color: changePriceColor, fontSize: 11),),
+                                          const Text('CHG', style: TextStyle( color: Colors.white, fontSize: 11),),
+                                          Text(changePrice, style: const TextStyle( color: Colors.white, fontSize: 11),),
                                         ],
                                       ),
                   
                                      Row(
                                         children: [
-                                          const Text('vol', style: TextStyle(color: AppColors.cardTextColor, fontSize: 12),),
-                                          Text(vol, style: const TextStyle(color: AppColors.sidebarTextColor, fontSize: 12),),
+                                          const Text('vol', style: TextStyle(color: Colors.white, fontSize: 12),),
+                                          Text(vol, style: const TextStyle( color: Colors.white, fontSize: 12),),
                                         ],
                                       ),
                                     ],
