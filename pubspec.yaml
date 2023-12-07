@@ -38,6 +38,7 @@ dependencies:
   hexagon: ^0.2.0
   flutter_animate: ^4.2.0+1
   animations: ^2.0.8
+  lottie: ^2.7.0
 
 dev_dependencies:
   flutter_test:
