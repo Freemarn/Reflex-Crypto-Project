@@ -1,37 +1,40 @@
-import 'package:crypto_bomb/screens/dashboard_page.dart';
-import 'package:crypto_bomb/screens/deposit.dart';
-import 'package:crypto_bomb/screens/profile_page.dart';
-import 'package:crypto_bomb/screens/support_page.dart';
-import 'package:crypto_bomb/screens/transaction_page.dart';
-import 'package:crypto_bomb/screens/withdrawal_page.dart';
+import 'package:crypto_bomb/admin%20%20screen/active.dart';
+import 'package:crypto_bomb/admin%20%20screen/admin_page.dart';
+import 'package:crypto_bomb/admin%20%20screen/manage_deposits.dart';
+import 'package:crypto_bomb/admin%20%20screen/manage_users.dart';
+import 'package:crypto_bomb/admin%20%20screen/manage_withdrawal.dart';
+import 'package:crypto_bomb/admin%20%20screen/packages.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class UserDashboard extends StatefulWidget {
-  const UserDashboard({super.key});
+class AdminPanel extends StatefulWidget {
+   static const String routeName = '/admin';
+  const AdminPanel({super.key});
+  
 
   @override
-  State<UserDashboard> createState() => _UserDashboardState();
+  State<AdminPanel> createState() => _AdminPanelState();
 }
 
-class _UserDashboardState extends State<UserDashboard> {
+class _AdminPanelState extends State<AdminPanel> {
+  
   late List<Widget> const_screens = [
-    const DashboardPage(),
-    const DepositPage(),
-    const WithdrawalPage(),
-    const TransactionsPage(),
-    const SupportPage(),
-    const ProfilePage(),
+    const AdminPage(),
+    const ManageDeposits(),
+    const ManageWithdrawal(),
+    const InvestmentPackages(),
+    const ActiveInvestment(),
+    const ManageUsers(),
   ];
 
   int _selectedIndex = 0;
-  //NavigationRailLabelType labelType = NavigationRailLabelType.all;
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: AppColors.headerTextColor,
           automaticallyImplyLeading: false,
           toolbarHeight: MediaQuery.of(context).size.height * 0.1,
           //backgroundColor: AppColors.mainColor.withOpacity(0.6),
@@ -46,14 +49,14 @@ class _UserDashboardState extends State<UserDashboard> {
                   const Text(
                     'Crypto',
                     style: TextStyle(
-                        color: AppColors.headerTextColor,
+                        color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   ),
                   const Text(
                     'Flex',
                     style: TextStyle(
-                        color: AppColors.mainColor,
+                        color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   ),
@@ -71,13 +74,13 @@ class _UserDashboardState extends State<UserDashboard> {
                                   width: 2,
                                   color: AppColors.fillAndBorderColor)),
                           enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(6),
                               borderSide: const BorderSide(
                                   width: 2,
                                   color: AppColors.fillAndBorderColor)),
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'search for events here',
+                          hintText: 'Manage Users',
                           hintStyle: const TextStyle(
                             color: AppColors.cardTextColor,
                             fontSize: 12,
@@ -93,55 +96,6 @@ class _UserDashboardState extends State<UserDashboard> {
               Row(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.092,
-                    height: MediaQuery.of(context).size.height * 0.06,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: AppColors.fillAndBorderColor),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Stack(
-                          children: [
-                            const Icon(
-                              Icons.notifications_outlined,
-                              size: 20,
-                              color: AppColors.iconColor,
-                            ),
-                            Positioned(
-                                right: 0,
-                                left: 7,
-                                bottom: 9,
-                                child: Container(
-                                  height: 7,
-                                  width: 7,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.mainColor,
-                                  ),
-                                ))
-                          ],
-                        ),
-                        const Text(
-                          'Notifications',
-                          style: TextStyle(
-                              fontSize: 13, color: AppColors.cardTextColor),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.01,
-                  ),
-                  Container(
-                    width: 2,
-                    height: 30,
-                    color: AppColors.fillAndBorderColor,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.01,
-                  ),
-                  Container(
                     width: MediaQuery.of(context).size.width * 0.11,
                     height: MediaQuery.of(context).size.height * 0.06,
                     decoration: BoxDecoration(
@@ -150,23 +104,14 @@ class _UserDashboardState extends State<UserDashboard> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CircleAvatar(
-                          radius: 15,
-                          backgroundImage:
-                              AssetImage("lib/assets/images/p3.jpg"),
-                        ),
                         Text(
-                          'Jeff paul',
+                          'Admin',
                           style: TextStyle(
                             fontSize: 13,
                             color: AppColors.headerTextColor,
                           ),
                         ),
-                        Icon(
-                          Icons.arrow_drop_down,
-                          size: 20,
-                          color: AppColors.iconColor,
-                        )
+                        Icon(Icons.portrait_rounded)
                       ],
                     ),
                   ),
@@ -176,8 +121,8 @@ class _UserDashboardState extends State<UserDashboard> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.0123),
+          padding:
+              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.0123),
           child: Row(children: <Widget>[
             NavigationRail(
                 minWidth: MediaQuery.of(context).size.width * .13,
@@ -192,7 +137,7 @@ class _UserDashboardState extends State<UserDashboard> {
                       icon: Row(
                         children: [
                           const Icon(
-                            Icons.dashboard_rounded,
+                            Icons.dashboard_outlined,
                             color: AppColors.cardTextColor,
                           ),
                           SizedBox(
@@ -208,17 +153,20 @@ class _UserDashboardState extends State<UserDashboard> {
                         ],
                       ),
                       label: const Text('Dashboard')),
+                 
+               
+              
                   NavigationRailDestination(
                       icon: Row(
                         children: [
                           const Icon(
-                            Icons.currency_bitcoin_outlined,
+                            Icons.add_card_outlined,
                             color: AppColors.cardTextColor,
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.007,
                           ),
-                          const Text('Deposit',
+                          const Text('Deposits',
                               style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.sidebarTextColor)),
@@ -227,18 +175,16 @@ class _UserDashboardState extends State<UserDashboard> {
                           ),
                         ],
                       ),
-                      label: const Text('Deposit')),
+                      label: const Text('Deposits')),
                   NavigationRailDestination(
                       icon: Row(
                         children: [
-                          const Icon(
-                            Icons.credit_score_rounded,
-                            color: AppColors.cardTextColor,
-                          ),
+                          const Icon(Icons.receipt_outlined,
+                              color: AppColors.cardTextColor),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.007,
                           ),
-                          const Text('Withdrawal',
+                          const Text('Withdrawals',
                               style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.sidebarTextColor)),
@@ -248,17 +194,19 @@ class _UserDashboardState extends State<UserDashboard> {
                         ],
                       ),
                       label: const Text('Withdrawals')),
-                  NavigationRailDestination(
+
+
+                      NavigationRailDestination(
                       icon: Row(
                         children: [
                           const Icon(
-                            Icons.calendar_month_rounded,
+                            Icons.list,
                             color: AppColors.cardTextColor,
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.007,
                           ),
-                          const Text('Transaction History',
+                          const Text('Plans',
                               style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.sidebarTextColor)),
@@ -267,18 +215,20 @@ class _UserDashboardState extends State<UserDashboard> {
                           ),
                         ],
                       ),
-                      label: const Text('Transaction History')),
-                  NavigationRailDestination(
+                      label: const Text('Plans')),
+
+
+                      NavigationRailDestination(
                       icon: Row(
                         children: [
                           const Icon(
-                            Icons.supervisor_account_rounded,
+                            Icons.blur_on_outlined,
                             color: AppColors.cardTextColor,
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.007,
                           ),
-                          const Text('Support',
+                          const Text('Active Plans',
                               style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.sidebarTextColor)),
@@ -287,16 +237,18 @@ class _UserDashboardState extends State<UserDashboard> {
                           ),
                         ],
                       ),
-                      label: const Text('Support')),
-                  NavigationRailDestination(
+                      label: const Text('Active Plans')),
+
+
+                      NavigationRailDestination(
                       icon: Row(
                         children: [
-                          const Icon(Icons.account_circle_outlined,
+                          const Icon(Icons.people,
                               color: AppColors.cardTextColor),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.007,
                           ),
-                          const Text('Profile',
+                          const Text('Users',
                               style: TextStyle(
                                   fontSize: 14,
                                   color: AppColors.sidebarTextColor)),
@@ -305,7 +257,9 @@ class _UserDashboardState extends State<UserDashboard> {
                           ),
                         ],
                       ),
-                      label: const Text('Profile')),
+                      label: const Text('Users')),
+
+
                 ],
                 leading: Padding(
                   padding: EdgeInsets.only(
@@ -322,10 +276,11 @@ class _UserDashboardState extends State<UserDashboard> {
                             CircleAvatar(
                               radius: 22,
                               child: CircleAvatar(
-                                radius: 18,
-                                backgroundImage:
-                                    AssetImage("lib/assets/images/p3.jpg"),
-                              ),
+                                  radius: 18,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: AppColors.cardTextColor,
+                                  )),
                             ),
                             SizedBox(
                               width: 15,
@@ -334,14 +289,14 @@ class _UserDashboardState extends State<UserDashboard> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'welcome',
+                                  'CryptoFlex',
                                   style: TextStyle(
                                       fontSize: 17,
                                       color: AppColors.headerTextColor,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  'Jeff paul',
+                                  'Admin',
                                   style: TextStyle(
                                       fontSize: 13,
                                       color: AppColors.sidebarTextColor),
@@ -349,74 +304,6 @@ class _UserDashboardState extends State<UserDashboard> {
                               ],
                             )
                           ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const DepositPage()));
-                      },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.14,
-                          height: MediaQuery.of(context).size.height * 0.065,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              border: Border.all(
-                                  width: 1, color: AppColors.mainColor)),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.credit_card,
-                                color: AppColors.mainColor,
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'Deposit',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
-                                    color: AppColors.mainColor),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const WithdrawalPage()));
-                      },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.14,
-                          height: MediaQuery.of(context).size.height * 0.065,
-                          decoration: BoxDecoration(
-                            color: AppColors.mainColor,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.currency_exchange,
-                                color: Colors.white,
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'withdraw',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
-                                    color: Colors.white),
-                              ),
-                            ],
-                          ),
                         ),
                       ),
                       SizedBox(

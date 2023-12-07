@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:crypto_bomb/admin%20%20screen/admin_dashboard.dart';
 import 'package:crypto_bomb/components/benfits_card.dart';
 import 'package:crypto_bomb/components/container_text.dart';
 import 'package:crypto_bomb/components/liveupdate_card.dart';
@@ -20,9 +21,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
+
+
+
 void main() {
+
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+// );
+
   runApp(const MyApp());
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -32,13 +43,29 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CryptoFlex',
+      initialRoute: '/',
+      onGenerateRoute: (RouteSettings routeSettings) {
+        return MaterialPageRoute<void>(
+            settings: routeSettings,
+            builder: (BuildContext context){
+              switch (routeSettings.name) {
+                case AdminPanel.routeName:
+                  return const AdminPanel();
+                  default: return const MyHomePage(title: 'Crypto bomb');
+              }
+             
+            });
+      },
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Crypto bomb'),
     );
   }
 }
+
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -137,9 +164,12 @@ class _MyHomePageState extends State<MyHomePage>
                       width: MediaQuery.of(context).size.width * 0.09,
                     ),
                     GestureDetector(
-                      onTap: (){
-                         Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const MyHomePage(title: 'Home',),));
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const MyHomePage(
+                            title: 'Home',
+                          ),
+                        ));
                       },
                       child: const Text(
                         'Home',
@@ -151,9 +181,10 @@ class _MyHomePageState extends State<MyHomePage>
                       width: MediaQuery.of(context).size.width * 0.03,
                     ),
                     GestureDetector(
-                       onTap: (){
-                         Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const AboutUs(),));
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const AboutUs(),
+                        ));
                       },
                       child: const Text(
                         'About Us',
@@ -165,9 +196,10 @@ class _MyHomePageState extends State<MyHomePage>
                       width: MediaQuery.of(context).size.width * 0.03,
                     ),
                     GestureDetector(
-                       onTap: (){
-                         Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const Faqs(),));
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Faqs(),
+                        ));
                       },
                       child: const Text(
                         'FAQs',
@@ -179,9 +211,10 @@ class _MyHomePageState extends State<MyHomePage>
                       width: MediaQuery.of(context).size.width * 0.03,
                     ),
                     GestureDetector(
-                       onTap: (){
-                         Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ContactUs(),));
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ContactUs(),
+                        ));
                       },
                       child: const Text(
                         'Contact Us',
@@ -1337,7 +1370,8 @@ class _MyHomePageState extends State<MyHomePage>
                       ],
                     ),
                     Image(
-                        image: const AssetImage('lib/assets/images/12 pro 7.png'),
+                        image:
+                            const AssetImage('lib/assets/images/12 pro 7.png'),
                         height: MediaQuery.of(context).size.height * 0.4),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
