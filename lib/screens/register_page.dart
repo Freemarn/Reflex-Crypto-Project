@@ -9,11 +9,35 @@ import 'package:lottie/lottie.dart';
 class RegisterUser extends StatefulWidget {
   const RegisterUser({super.key});
 
-  @override
+
   State<RegisterUser> createState() => _RegisterUserState();
 }
 
 class _RegisterUserState extends State<RegisterUser> {
+ String _email = "";
+ String _password = "";
+ String _username = "";
+ String _fullname = "";
+ String _phonenumber = "";
+ String _referralId = "";
+ String _country = "";
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<void> _signUp(String email, String password) async {
+  try {
+    await _auth.createUserWithEmailAndPassword(
+      email: _email,
+      password: _password,
+    );
+    Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) => const UserDashboard()));
+  } on FirebaseAuthException catch (e) {
+    // Handle error
+    
+  }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,6 +159,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   Row(
                     children: [
                       const RegistrationForm(
+                          onChange: (value) => _username = value,
                           headerName: 'Username ',
                           options: '*',
                           prefixIconUrl: Icons.person_2_outlined,
@@ -143,6 +168,7 @@ class _RegisterUserState extends State<RegisterUser> {
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
                       const RegistrationForm(
+                          onChange: (value) => _fullname = value
                           headerName: 'full name ',
                           options: '*',
                           prefixIconUrl: Icons.verified_outlined,
@@ -155,6 +181,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   Row(
                     children: [
                       const RegistrationForm(
+                        onChange: (value) => _email = value
                           headerName: 'Email Address ',
                           options: '*',
                           prefixIconUrl: Icons.alternate_email,
@@ -163,6 +190,7 @@ class _RegisterUserState extends State<RegisterUser> {
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
                       const RegistrationForm(
+                          onChange: (value) => _phonenumber = value
                           headerName: 'Phone Number ',
                           options: '*',
                           prefixIconUrl: Icons.phone_outlined,
@@ -175,6 +203,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   Row(
                     children: [
                       const RegistrationForm(
+                      onChange: (value) => _password = value
                           headerName: 'Password ',
                           options: '*',
                           prefixIconUrl: Icons.visibility_outlined,
@@ -195,6 +224,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   Row(
                     children: [
                       const RegistrationForm(
+               onChange: (value) => _country = value,
                           headerName: 'Country ',
                           options: '*',
                           prefixIconUrl: Icons.location_on_outlined,
@@ -203,6 +233,7 @@ class _RegisterUserState extends State<RegisterUser> {
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
                       const RegistrationForm(
+                        onChange: (value) => _referralId = value,
                           headerName: 'Referral ID ',
                           prefixIconUrl: Icons.link_outlined,
                           hintTitle: 'Referral id optional'),
@@ -212,9 +243,10 @@ class _RegisterUserState extends State<RegisterUser> {
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const UserDashboard()));
+                    onTap: () async {
+                      // Create user 
+                     await _signUp(String email, _password);
+             
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.1,
