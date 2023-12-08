@@ -5,6 +5,7 @@ import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LogUserIn extends StatefulWidget {
   const LogUserIn({super.key});
@@ -14,6 +15,22 @@ class LogUserIn extends StatefulWidget {
 }
 
 class _LogUserInState extends State<LogUserIn> {
+  String _email = "";
+  String _password = "";
+  Future<void> _login(String email, String password) async {
+  try {
+    await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    Navigator.of(context).push(MaterialPageRoute(
+   builder: (context) => const UserDashboard()));
+  } on FirebaseAuthException catch (e) {
+    // Handle error
+  }
+}
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,6 +152,8 @@ class _LogUserInState extends State<LogUserIn> {
                   Column(
                     children: [
                       const RegistrationForm(
+                        
+                        onChange: (value) => _email = value,
                           headerName: 'Email ',
                           options: '*',
                           prefixIconUrl: Icons.alternate_email,
@@ -143,6 +162,7 @@ class _LogUserInState extends State<LogUserIn> {
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       const RegistrationForm(
+                        onChange: (value) => _password = value,
                           headerName: 'Password ',
                           options: '*',
                           prefixIconUrl: Icons.visibility_outlined,
@@ -153,9 +173,9 @@ class _LogUserInState extends State<LogUserIn> {
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const UserDashboard()));
+                    onTap: () async {
+                     await _login(_email,_password);
+                   
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.1,
