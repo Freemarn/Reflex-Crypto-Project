@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:crypto_bomb/admin%20%20screen/admin_dashboard.dart';
 import 'package:crypto_bomb/components/benfits_card.dart';
 import 'package:crypto_bomb/components/container_text.dart';
 import 'package:crypto_bomb/components/liveupdate_card.dart';
@@ -9,7 +10,11 @@ import 'package:crypto_bomb/components/page1.dart';
 import 'package:crypto_bomb/components/page2.dart';
 import 'package:crypto_bomb/components/page3.dart';
 import 'package:crypto_bomb/components/page4.dart';
-import 'package:crypto_bomb/components/register_page.dart';
+import 'package:crypto_bomb/screens/about_us.dart';
+import 'package:crypto_bomb/screens/contact_us.dart';
+import 'package:crypto_bomb/screens/faqs.dart';
+import 'package:crypto_bomb/screens/login_page.dart';
+import 'package:crypto_bomb/screens/register_page.dart';
 
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +22,18 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
 
-voidb main() {
+
+
+void main() {
+
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+// );
+
   runApp(const MyApp());
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -29,13 +43,29 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CryptoFlex',
+      initialRoute: '/',
+      onGenerateRoute: (RouteSettings routeSettings) {
+        return MaterialPageRoute<void>(
+            settings: routeSettings,
+            builder: (BuildContext context){
+              switch (routeSettings.name) {
+                case AdminPanel.routeName:
+                  return const AdminPanel();
+                  default: return const MyHomePage(title: 'Crypto bomb');
+              }
+             
+            });
+      },
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Crypto bomb'),
     );
   }
 }
+
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -105,8 +135,6 @@ class _MyHomePageState extends State<MyHomePage>
     return Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-      
-          
           toolbarHeight: MediaQuery.of(context).size.height * 0.1,
           title: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 65),
@@ -135,34 +163,64 @@ class _MyHomePageState extends State<MyHomePage>
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.09,
                     ),
-                    const Text(
-                      'Home',
-                      style: TextStyle(
-                          fontSize: 13, color: AppColors.cardTextColor),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const MyHomePage(
+                            title: 'Home',
+                          ),
+                        ));
+                      },
+                      child: const Text(
+                        'Home',
+                        style: TextStyle(
+                            fontSize: 13, color: AppColors.cardTextColor),
+                      ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.03,
                     ),
-                    const Text(
-                      'About Us',
-                      style: TextStyle(
-                          fontSize: 13, color: AppColors.cardTextColor),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const AboutUs(),
+                        ));
+                      },
+                      child: const Text(
+                        'About Us',
+                        style: TextStyle(
+                            fontSize: 13, color: AppColors.cardTextColor),
+                      ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.03,
                     ),
-                    const Text(
-                      'FAQs',
-                      style: TextStyle(
-                          fontSize: 13, color: AppColors.cardTextColor),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Faqs(),
+                        ));
+                      },
+                      child: const Text(
+                        'FAQs',
+                        style: TextStyle(
+                            fontSize: 13, color: AppColors.cardTextColor),
+                      ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.03,
                     ),
-                    const Text(
-                      'Contact Us',
-                      style: TextStyle(
-                          fontSize: 13, color: AppColors.cardTextColor),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ContactUs(),
+                        ));
+                      },
+                      child: const Text(
+                        'Contact Us',
+                        style: TextStyle(
+                            fontSize: 13, color: AppColors.cardTextColor),
+                      ),
                     )
                   ],
                 ),
@@ -217,23 +275,29 @@ class _MyHomePageState extends State<MyHomePage>
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.01,
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.08,
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.amber),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            'Login',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.white,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const LogUserIn()));
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.08,
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.amber),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Login',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -249,9 +313,10 @@ class _MyHomePageState extends State<MyHomePage>
               Container(
                   height: MediaQuery.of(context).size.height * 0.9,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.8),
-                    image: const DecorationImage(image: AssetImage('lib/assets/images/space.jpeg'), fit: BoxFit.cover)
-                  ),
+                      color: Colors.black.withOpacity(0.8),
+                      image: const DecorationImage(
+                          image: AssetImage('lib/assets/images/space.jpeg'),
+                          fit: BoxFit.cover)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -277,7 +342,7 @@ class _MyHomePageState extends State<MyHomePage>
                                       'Take Control Of Your Investment Portfolio Using\nCryptoFlex.',
                                       style: TextStyle(
                                         fontSize: 15,
-                                        color:Colors.white,
+                                        color: Colors.white,
                                       ),
                                     )
                                         .animate()
@@ -293,12 +358,15 @@ class _MyHomePageState extends State<MyHomePage>
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const RegisterUser()));
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const RegisterUser()));
                                       },
                                       child: Container(
-                                        width: MediaQuery.of(context).size.width *
-                                            0.1,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.08,
@@ -320,24 +388,33 @@ class _MyHomePageState extends State<MyHomePage>
                                       width: MediaQuery.of(context).size.width *
                                           0.01,
                                     ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.08,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.white),
-                                      child: const Center(
-                                          child: Text(
-                                        'Login',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600),
-                                      )),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const LogUserIn()));
+                                      },
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.08,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: Colors.white),
+                                        child: const Center(
+                                            child: Text(
+                                          'Login',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w600),
+                                        )),
+                                      ),
                                     )
                                   ],
                                 ).animate().fadeIn(duration: 600.ms).slideX(),
@@ -358,7 +435,6 @@ class _MyHomePageState extends State<MyHomePage>
                                     .animate()
                                     .fadeIn(duration: 400.ms)
                                     .slideX(begin: 1),
-                         
                               ],
                             ),
                           ],
@@ -389,22 +465,19 @@ class _MyHomePageState extends State<MyHomePage>
                                     changePrice: '+3.44',
                                     vol: '7060.32M',
                                     changePriceColor: Colors.greenAccent,
-                                    borderColor:
-                                        Colors.amber.withOpacity(0.4))
+                                    borderColor: Colors.amber.withOpacity(0.4))
                                 .animate()
                                 .fadeIn(duration: 600.ms)
                                 .slideY(),
                             const MiniCards(
-                                    imageUrl:
-                                        'lib/assets/images/real sol.webp',
+                                    imageUrl: 'lib/assets/images/real sol.webp',
                                     imageText: 'Solana',
                                     abbr: 'SOL',
                                     currentPrice: '260.30',
                                     changePrice: '+2.60',
                                     vol: '145.21M',
                                     changePriceColor: Colors.greenAccent,
-                                    borderColor: Colors.blueGrey
-                                        )
+                                    borderColor: Colors.blueGrey)
                                 .animate()
                                 .fadeIn(duration: 700.ms)
                                 .slideY(),
@@ -422,8 +495,7 @@ class _MyHomePageState extends State<MyHomePage>
                                 .fadeIn(duration: 800.ms)
                                 .slideY(),
                             MiniCards(
-                                    imageUrl:
-                                        'lib/assets/images/polygon.webp',
+                                    imageUrl: 'lib/assets/images/polygon.webp',
                                     imageText: 'Polygon',
                                     abbr: 'MATIC',
                                     currentPrice: '3,860.30',
@@ -440,17 +512,14 @@ class _MyHomePageState extends State<MyHomePage>
                       )
                     ],
                   )),
-
-                  SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.06,
-                                ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.06,
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.9,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
                     const Text(
                       'Achieve major financial goals with CryptoFlex.',
                       style: TextStyle(
@@ -506,14 +575,20 @@ class _MyHomePageState extends State<MyHomePage>
                           borderRadius: BorderRadius.circular(10),
                           border:
                               Border.all(width: 1, color: Colors.lightBlue)),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
-                            'Open Account',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.lightBlue,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const RegisterUser()));
+                            },
+                            child: const Text(
+                              'Open Account',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.lightBlue,
+                              ),
                             ),
                           ),
                         ],
@@ -1294,8 +1369,10 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                       ],
                     ),
-                    const Image(
-                        image: AssetImage('lib/assets/images/12 pro 7.png')),
+                    Image(
+                        image:
+                            const AssetImage('lib/assets/images/12 pro 7.png'),
+                        height: MediaQuery.of(context).size.height * 0.4),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
