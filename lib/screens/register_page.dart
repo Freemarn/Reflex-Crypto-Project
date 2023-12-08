@@ -3,6 +3,9 @@ import 'package:crypto_bomb/screens/dashboard.dart';
 import 'package:crypto_bomb/screens/login_page.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
@@ -22,19 +25,39 @@ class _RegisterUserState extends State<RegisterUser> {
  String _referralId = "";
  String _country = "";
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> _signUp(String email, String password) async {
+  Future<void> createUser() async {
   try {
-    await _auth.createUserWithEmailAndPassword(
+    // Initialize Firebase Auth instance
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    // Create a new user account
+    final UserCredential userCredential = await auth.createUserWithEmailAndPassword(
       email: _email,
       password: _password,
     );
+
+    // Get the current user's ID
+    final String uid = userCredential.user!.uid;
+
+    // Create a new document for the user in the Firestore collection
+    final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+    await usersCollection.doc(uid).set({
+      'email': _email,
+      'username': _username,
+      'fullname': _fullname,
+      'phonenumber': _phonenumber,
+      'referralId': _referralId,
+      'country': _country,
+    });
     Navigator.of(context).push(MaterialPageRoute(
     builder: (context) => const UserDashboard()));
   } on FirebaseAuthException catch (e) {
-    // Handle error
-    
+    // Handle Firebase authentication errors
+    print("Error creating user: $e");
+  } catch (e) {
+    // Handle other errors
+    print("Error creating user: $e");
   }
   }
 
@@ -245,7 +268,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   GestureDetector(
                     onTap: () async {
                       // Create user 
-                     await _signUp(String email, _password);
+                     await  createUser();
              
                     },
                     child: Container(
