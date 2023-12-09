@@ -17,20 +17,21 @@ class LogUserIn extends StatefulWidget {
 class _LogUserInState extends State<LogUserIn> {
   String _email = "";
   String _password = "";
-  Future<void> _login(String email, String password) async {
-  try {
-    await _auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => const UserDashboard()));
-  } on FirebaseAuthException catch (e) {
-    // Handle error
-  }
-}
 
-  
+  Future<void> _login(String email, String password) async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const UserDashboard()));
+    } on FirebaseAuthException catch (e) {
+      // Handle error
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,9 +152,8 @@ class _LogUserInState extends State<LogUserIn> {
                   ),
                   Column(
                     children: [
-                      const RegistrationForm(
-                        
-                        onChange: (value) => _email = value,
+                       RegistrationForm(
+                          onChange: (value) => _email = value,
                           headerName: 'Email ',
                           options: '*',
                           prefixIconUrl: Icons.alternate_email,
@@ -161,8 +161,8 @@ class _LogUserInState extends State<LogUserIn> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
-                      const RegistrationForm(
-                        onChange: (value) => _password = value,
+                       RegistrationForm(
+                          onChange: (value) => _password = value,
                           headerName: 'Password ',
                           options: '*',
                           prefixIconUrl: Icons.visibility_outlined,
@@ -174,8 +174,7 @@ class _LogUserInState extends State<LogUserIn> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                     await _login(_email,_password);
-                   
+                      await _login(_email, _password);
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.1,

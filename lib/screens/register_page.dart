@@ -49,6 +49,13 @@ class _RegisterUserState extends State<RegisterUser> {
       'phonenumber': _phonenumber,
       'referralId': _referralId,
       'country': _country,
+      'deposited': 0.00, 
+      'profit': 0.00,
+      'packages': 0, 
+      'activePackages': 0, 
+      'refBonus': 0.00, 
+      'balance': 0.00,
+
     });
     Navigator.of(context).push(MaterialPageRoute(
     builder: (context) => const UserDashboard()));
@@ -181,7 +188,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   Row(
                     children: [
-                      const RegistrationForm(
+                       RegistrationForm(
                           onChange: (value) => _username = value,
                           headerName: 'Username ',
                           options: '*',
@@ -190,8 +197,8 @@ class _RegisterUserState extends State<RegisterUser> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
-                      const RegistrationForm(
-                          onChange: (value) => _fullname = value
+                       RegistrationForm(
+                          onChange: (value) => _fullname = value,
                           headerName: 'full name ',
                           options: '*',
                           prefixIconUrl: Icons.verified_outlined,
@@ -203,8 +210,8 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   Row(
                     children: [
-                      const RegistrationForm(
-                        onChange: (value) => _email = value
+                       RegistrationForm(
+                        onChange: (value) => _email = value,
                           headerName: 'Email Address ',
                           options: '*',
                           prefixIconUrl: Icons.alternate_email,
@@ -212,8 +219,8 @@ class _RegisterUserState extends State<RegisterUser> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
-                      const RegistrationForm(
-                          onChange: (value) => _phonenumber = value
+                       RegistrationForm(
+                          onChange: (value) => _phonenumber = value,
                           headerName: 'Phone Number ',
                           options: '*',
                           prefixIconUrl: Icons.phone_outlined,
@@ -225,8 +232,8 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   Row(
                     children: [
-                      const RegistrationForm(
-                      onChange: (value) => _password = value
+                       RegistrationForm(
+                      onChange: (value) => _password = value,
                           headerName: 'Password ',
                           options: '*',
                           prefixIconUrl: Icons.visibility_outlined,
@@ -246,7 +253,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   Row(
                     children: [
-                      const RegistrationForm(
+                       RegistrationForm(
                onChange: (value) => _country = value,
                           headerName: 'Country ',
                           options: '*',
@@ -255,7 +262,7 @@ class _RegisterUserState extends State<RegisterUser> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
-                      const RegistrationForm(
+                       RegistrationForm(
                         onChange: (value) => _referralId = value,
                           headerName: 'Referral ID ',
                           prefixIconUrl: Icons.link_outlined,
