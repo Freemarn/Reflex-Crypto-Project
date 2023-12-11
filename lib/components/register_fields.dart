@@ -6,11 +6,13 @@ class RegistrationForm extends StatelessWidget {
   final IconData prefixIconUrl;
   final String hintTitle;
   final String options;
+  final void Function(String)? onChange;
   const RegistrationForm(
       {super.key,
       required this.headerName,
       required this.prefixIconUrl,
       required this.hintTitle,
+       this.onChange,
       this.options = ''});
 
   @override
@@ -38,6 +40,7 @@ class RegistrationForm extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.07,
           width: MediaQuery.of(context).size.width * 0.17,
           child: TextFormField(
+            onChanged: onChange,
             decoration: InputDecoration(
                 filled: true,
                 fillColor: AppColors.fillAndBorderColor,

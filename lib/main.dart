@@ -17,6 +17,7 @@ import 'package:crypto_bomb/screens/login_page.dart';
 import 'package:crypto_bomb/screens/register_page.dart';
 
 import 'package:crypto_bomb/utilis/app_colors.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
@@ -24,11 +25,12 @@ import 'package:lottie/lottie.dart';
 
 
 
-void main() {
-
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-// );
+void main() async {
+WidgetsFlutterBinding.ensureInitialized();
+  
+  await Firebase.initializeApp(   
+    options: DefaultFirebaseOptions.currentPlatform,
+ );
 
   runApp(const MyApp());
 }
