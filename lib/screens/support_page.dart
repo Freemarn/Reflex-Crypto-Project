@@ -81,7 +81,7 @@ class SupportPage extends StatelessWidget {
                                     backgroundColor:
                                         Colors.lightGreen.withOpacity(0.5),
                                     dismissDirection: DismissDirection.vertical,
-                                    duration: Durations.medium2,
+                                    // duration: Durations.medium2,
                                   ),
                                 );
                               },
@@ -132,7 +132,7 @@ class SupportPage extends StatelessWidget {
                                     backgroundColor:
                                         Colors.lightGreen.withOpacity(0.5),
                                     dismissDirection: DismissDirection.vertical,
-                                    duration: Durations.medium2,
+                                    // duration: Durations.medium2,
                                   ),
                                 );
                               },

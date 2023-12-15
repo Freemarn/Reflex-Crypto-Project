@@ -266,7 +266,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   backgroundColor:
                                       Colors.lightGreen.withOpacity(0.5),
                                   dismissDirection: DismissDirection.vertical,
-                                  duration: Durations.medium2,
+                                  // duration: Durations.medium2,
                                 ),
                               );
                             },

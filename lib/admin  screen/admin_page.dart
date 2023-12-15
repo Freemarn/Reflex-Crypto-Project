@@ -71,7 +71,7 @@ class _AdminPageState extends State<AdminPage> {
                                 AccSummary(
                                   imageUrl: 'lib/assets/images/add-group.png',
                                   headText: 'Total Users',
-                                  accBal: snapshot.data.,
+                                  accBal: "",
                                 )
                               ],
                             ),
