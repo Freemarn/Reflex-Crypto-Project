@@ -24,8 +24,8 @@ class MiniCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.14,
-      height: MediaQuery.of(context).size.height * 0.15,
+      width: 210,
+      height: 120,
       decoration: BoxDecoration(
           border: Border.all(
             color: borderColor,

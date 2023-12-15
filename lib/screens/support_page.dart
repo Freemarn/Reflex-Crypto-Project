@@ -36,7 +36,7 @@ class SupportPage extends StatelessWidget {
                 const SizedBox(height: 20.0),
           
                 // Lottie Animation
-                Container(
+                SizedBox(
                   height: 200.0,
                   child: Lottie.network(
                     'https://lottie.host/1e2cd061-adc7-4d04-b126-a623a5ed6366/AXvFQ9xjMG.json',

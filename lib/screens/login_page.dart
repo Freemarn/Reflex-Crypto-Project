@@ -19,15 +19,15 @@ class _LogUserInState extends State<LogUserIn> {
   String _password = "";
 
   Future<void> _login(String email, String password) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
     try {
-      await _auth.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => const UserDashboard()));
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       // Handle error
     }
   }

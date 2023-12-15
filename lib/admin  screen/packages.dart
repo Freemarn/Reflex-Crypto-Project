@@ -1,3 +1,4 @@
+import 'package:crypto_bomb/components/admin_plans.dart';
 
 import 'package:flutter/material.dart';
 
@@ -11,8 +12,22 @@ class InvestmentPackages extends StatefulWidget {
 class _InvestmentPackagesState extends State<InvestmentPackages> {
   @override
   Widget build(BuildContext context) {
-     return Container(
-      color: const Color.fromARGB(255, 60, 48, 138),
+    return const Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          AdminPlans(
+              price: '\$5000', headerText: 'Basic', planThemeColor: Colors.indigo),
+          AdminPlans(
+              price: '\$10,000',
+              headerText: 'Standard',
+              planThemeColor: Colors.indigo),
+          AdminPlans(
+              price: '\$5000',
+              headerText: 'Basic',
+              planThemeColor: Colors.indigo),
+        ],
+      ),
     );
   }
 }

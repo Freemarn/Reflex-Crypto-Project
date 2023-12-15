@@ -1,12 +1,17 @@
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class PricePlans extends StatelessWidget {
-  final String price;
+class AdminPlans extends StatefulWidget {
+   final String price;
   final String headerText;
   final Color planThemeColor;
-  const PricePlans({super.key, required this.planThemeColor, required this.headerText, required this.price});
+  const AdminPlans({super.key, required this.price, required this.headerText, required this.planThemeColor});
 
+  @override
+  State<AdminPlans> createState() => _AdminPlansState();
+}
+
+class _AdminPlansState extends State<AdminPlans> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,10 +34,10 @@ class PricePlans extends StatelessWidget {
             height: 20,
           ),
           Text(
-            headerText,
+            widget.headerText,
             style: TextStyle(
                 fontSize: 40,
-                color: planThemeColor,
+                color: widget.planThemeColor,
                 fontWeight: FontWeight.normal),
           ),
           const SizedBox(
@@ -46,12 +51,12 @@ class PricePlans extends StatelessWidget {
                 height: 40,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: planThemeColor,
+                  color: widget.planThemeColor,
                   borderRadius: const BorderRadius.only(topLeft:Radius.circular(5), bottomLeft: Radius.circular(5))
                 ),
                 child: Center(
                   child: Text(
-                    price,
+                    widget.price,
                     style: TextStyle(
                         fontSize: 20, color: Colors.white.withOpacity(0.8)),
                   ),
@@ -273,23 +278,40 @@ class PricePlans extends StatelessWidget {
             height: 30,
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+           mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 
                 height: 50,
-                width: 160,
+                width: 100,
                 decoration: BoxDecoration(
-                  color: planThemeColor,
-                  borderRadius: const BorderRadius.only(topRight:Radius.circular(5), bottomRight: Radius.circular(5))
+                  
+                  borderRadius: const BorderRadius.only(topRight:Radius.circular(5), bottomRight: Radius.circular(5)),
+                  border: Border.all(
+                    color: widget.planThemeColor,
+                    width: 2
+                  )
                 ),
-                child: Center(
-                  child: Text(
-                    'SELECT',
-                    style: TextStyle(
-                        fontSize: 15, color: Colors.white.withOpacity(0.9)),
-                  ),
+                child: Center(child: Icon(Icons.edit, color: widget.planThemeColor,))
+              ),
+
+              const SizedBox(
+            width: 10,),
+
+
+            Container(
+                
+                height: 50,
+                width: 100,
+                decoration: BoxDecoration(
+                
+                  borderRadius: const BorderRadius.only(topRight:Radius.circular(5), bottomRight: Radius.circular(5)),
+                  border: Border.all(
+                    color: widget.planThemeColor,
+                    width: 2
+                  )
                 ),
+                child: Center(child: Icon(Icons.cancel_outlined, color: widget.planThemeColor,))
               ),
             ],
           ),

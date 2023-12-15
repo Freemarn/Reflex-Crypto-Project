@@ -10,6 +10,7 @@ import 'package:crypto_bomb/components/page1.dart';
 import 'package:crypto_bomb/components/page2.dart';
 import 'package:crypto_bomb/components/page3.dart';
 import 'package:crypto_bomb/components/page4.dart';
+import 'package:crypto_bomb/firebase_options.dart';
 import 'package:crypto_bomb/screens/about_us.dart';
 import 'package:crypto_bomb/screens/contact_us.dart';
 import 'package:crypto_bomb/screens/faqs.dart';
@@ -22,20 +23,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
-
-
-
 void main() async {
-WidgetsFlutterBinding.ensureInitialized();
-  
-  await Firebase.initializeApp(   
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
- );
+  );
 
   runApp(const MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -49,13 +44,13 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
             settings: routeSettings,
-            builder: (BuildContext context){
+            builder: (BuildContext context) {
               switch (routeSettings.name) {
                 case AdminPanel.routeName:
                   return const AdminPanel();
-                  default: return const MyHomePage(title: 'Crypto bomb');
+                default:
+                  return const MyHomePage(title: 'Crypto bomb');
               }
-             
             });
       },
       theme: ThemeData(
@@ -65,9 +60,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -162,75 +154,45 @@ class _MyHomePageState extends State<MyHomePage>
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.09,
+                    const SizedBox(
+                      width: 70,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const MyHomePage(
-                            title: 'Home',
-                          ),
-                        ));
-                      },
-                      child: const Text(
-                        'Home',
-                        style: TextStyle(
-                            fontSize: 13, color: AppColors.cardTextColor),
-                      ),
+                    const Text(
+                      'Home',
+                      style: TextStyle(
+                          fontSize: 13, color: AppColors.cardTextColor),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.03,
+                    const SizedBox(
+                      width: 20,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const AboutUs(),
-                        ));
-                      },
-                      child: const Text(
-                        'About Us',
-                        style: TextStyle(
-                            fontSize: 13, color: AppColors.cardTextColor),
-                      ),
+                    const Text(
+                      'About Us',
+                      style: TextStyle(
+                          fontSize: 13, color: AppColors.cardTextColor),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.03,
+                    const SizedBox(
+                      width: 20,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Faqs(),
-                        ));
-                      },
-                      child: const Text(
-                        'FAQs',
-                        style: TextStyle(
-                            fontSize: 13, color: AppColors.cardTextColor),
-                      ),
+                    const Text(
+                      'FAQs',
+                      style: TextStyle(
+                          fontSize: 13, color: AppColors.cardTextColor),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.03,
+                    const SizedBox(
+                      width: 20,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ContactUs(),
-                        ));
-                      },
-                      child: const Text(
-                        'Contact Us',
-                        style: TextStyle(
-                            fontSize: 13, color: AppColors.cardTextColor),
-                      ),
+                    const Text(
+                      'Contact Us',
+                      style: TextStyle(
+                          fontSize: 13, color: AppColors.cardTextColor),
                     )
                   ],
                 ),
                 Row(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.07,
-                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: 120,
+                      height: 40,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.fillAndBorderColor),
@@ -258,24 +220,24 @@ class _MyHomePageState extends State<MyHomePage>
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.01,
+                    const SizedBox(
+                      width: 10,
                     ),
                     const Text(
                       'Sign Up',
                       style: TextStyle(
                           fontSize: 13, color: AppColors.cardTextColor),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.01,
+                    const SizedBox(
+                      width: 10,
                     ),
                     Container(
                       width: 2,
                       height: 30,
                       color: AppColors.fillAndBorderColor,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.01,
+                    const SizedBox(
+                      width: 10,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -283,8 +245,8 @@ class _MyHomePageState extends State<MyHomePage>
                             builder: (context) => const LogUserIn()));
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.08,
-                        height: MediaQuery.of(context).size.height * 0.06,
+                        width: 120,
+                        height: 40,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.amber),
@@ -313,7 +275,7 @@ class _MyHomePageState extends State<MyHomePage>
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                  height: MediaQuery.of(context).size.height * 0.9,
+                  height:650,
                   decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.8),
                       image: const DecorationImage(
@@ -352,9 +314,8 @@ class _MyHomePageState extends State<MyHomePage>
                                         .slideX(),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.009,
+                                const SizedBox(
+                                  height:20,
                                 ),
                                 Row(
                                   children: [
@@ -366,12 +327,8 @@ class _MyHomePageState extends State<MyHomePage>
                                                     const RegisterUser()));
                                       },
                                       child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.1,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.08,
+                                        width: 120,
+                                        height: 45,
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -386,9 +343,8 @@ class _MyHomePageState extends State<MyHomePage>
                                         )),
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.01,
+                                    const SizedBox(
+                                      width: 20,
                                     ),
                                     GestureDetector(
                                       onTap: () {
@@ -398,12 +354,8 @@ class _MyHomePageState extends State<MyHomePage>
                                                     const LogUserIn()));
                                       },
                                       child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.1,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.08,
+                                        width: 120,
+                                        height: 45,
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -427,11 +379,10 @@ class _MyHomePageState extends State<MyHomePage>
                               children: [
                                 RotationTransition(
                                   turns: _rotationTween,
-                                  child: Image(
-                                    image: const AssetImage(
+                                  child: const Image(
+                                    image: AssetImage(
                                         'lib/assets/images/bent.png'),
-                                    height: MediaQuery.of(context).size.height *
-                                        0.74,
+                                    height:500,
                                   ),
                                 )
                                     .animate()
@@ -514,13 +465,14 @@ class _MyHomePageState extends State<MyHomePage>
                       )
                     ],
                   )),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.06,
+              const SizedBox(
+                height: 40,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.9,
+                height: 550,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  
                   children: [
                     const Text(
                       'Achieve major financial goals with CryptoFlex.',
@@ -536,43 +488,39 @@ class _MyHomePageState extends State<MyHomePage>
                         color: Colors.grey.withOpacity(0.7),
                       ),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
+                    const SizedBox(
+                      height: 20,
                     ),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      const OfferCard(
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+                      children: [
+                      OfferCard(
                         gitUrl:
                             'https://lottie.host/661e03ad-bfc4-492a-bc6b-061e0d456a15/saIEexU9b7.json',
                         blurb: 'Bespoke User Interfaces',
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.1,
-                      ),
-                      const OfferCard(
+                     
+                      OfferCard(
                           gitUrl:
                               'https://lottie.host/5663891c-fae0-43e6-a8d7-3864d4c24347/zSmWteMszs.json',
                           blurb: 'Top-flight Support'),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.1,
-                      ),
-                      const OfferCard(
+                      
+                       OfferCard(
                           gitUrl:
                               'https://lottie.host/e64669e5-fda3-45a1-b04c-a3f22227c163/QKAR8RrTQH.json',
                           blurb: 'Powerful security'),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.1,
-                      ),
-                      const OfferCard(
+                      
+                       OfferCard(
                           gitUrl:
                               'https://lottie.host/6e741141-c8a4-4751-a83f-93bf6d4465c2/wBDexAdgEP.json',
                           blurb: 'Numerous currencies'),
                     ]),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.13,
+                    const SizedBox(
+                      height: 120,
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.08,
-                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: 110,
+                      height: 50,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border:
