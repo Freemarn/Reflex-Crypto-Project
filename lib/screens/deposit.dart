@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:clipboard/clipboard.dart';
@@ -14,6 +16,37 @@ class DepositPage extends StatefulWidget {
 class _DepositPageState extends State<DepositPage> {
   List<PlatformFile>? _selectedFiles;
 
+  String amount = "";
+  String address = "bcqfjj2334kkvvkfvfkjf855848054vjvmvmfjfkgkfkfkdkd888839";
+  String receipt = "";
+
+  final TextEditingController _editingController = TextEditingController();
+
+  Future<void> deposit() async {
+    if (amount.isEmpty) return;
+    try {
+      // Initialize Firebase Auth instance
+      final FirebaseAuth auth = FirebaseAuth.instance;
+
+      // Create a new document for the user in the Firestore collection
+      final CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('deposit');
+      await usersCollection.doc(auth.currentUser!.uid).set({
+        'amount': amount,
+        'fullname': auth.currentUser!.displayName,
+        'address': address,
+        'receipt': receipt,
+      });
+      _editingController.clear();
+    } on FirebaseAuthException catch (e) {
+      // Handle Firebase authentication errors
+      print("Error creating user: $e");
+    } catch (e) {
+      // Handle other errors
+      print("Error creating user: $e");
+    }
+  }
+
   Future<void> _pickFiles() async {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -24,6 +57,7 @@ class _DepositPageState extends State<DepositPage> {
       if (result != null) {
         setState(() {
           _selectedFiles = result.files;
+          receipt = result.files.first.name;
         });
       }
     } catch (e) {
@@ -138,19 +172,17 @@ class _DepositPageState extends State<DepositPage> {
                               const SizedBox(
                                 width: 10,
                               ),
-
-                                Container(
-                    alignment: Alignment.center,
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    child: Lottie.network(
-                      'https://lottie.host/5772f2eb-f18a-4bae-b18c-4516156337bc/AzgrQKC4YC.json',
-                      repeat: true,
-                      reverse: false,
-                      animate: true,
-                    ),
-                  ),
-
-                              
+                              Container(
+                                alignment: Alignment.center,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                child: Lottie.network(
+                                  'https://lottie.host/5772f2eb-f18a-4bae-b18c-4516156337bc/AzgrQKC4YC.json',
+                                  repeat: true,
+                                  reverse: false,
+                                  animate: true,
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(
@@ -160,6 +192,9 @@ class _DepositPageState extends State<DepositPage> {
                             width: MediaQuery.of(context).size.width * 0.32,
                             height: MediaQuery.of(context).size.height * 0.08,
                             child: TextFormField(
+                              textInputAction: TextInputAction.done,
+                              onChanged: (value) => amount = value,
+                              controller: _editingController,
                               decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -259,44 +294,46 @@ class _DepositPageState extends State<DepositPage> {
                               }).toList(),
                             ),
                           const SizedBox(height: 15),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.1,
-                            height: MediaQuery.of(context).size.height * 0.05,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: AppColors.mainColor),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  'Submit',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.white,
+                          InkWell(
+                            onTap: () {
+                              deposit();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: AppColors.mainColor),
+                              child: const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    'Submit',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           )
                         ],
                       ),
                     ),
                   ),
-
-                  const SizedBox(height: 10,),
-
-
-                  
+                  const SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
               Column(
                 children: [
-                
                   Image(
                       height: MediaQuery.of(context).size.height * .7,
                       image:
                           const AssetImage('lib/assets/images/very bit.png')),
-                  
                 ],
               )
             ]),
