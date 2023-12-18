@@ -23,7 +23,7 @@ class _LogUserInState extends State<LogUserIn> {
   String _password = "";
 
   Future<void> _login(String email, String password) async {
-    final FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseAuth _auth = FirebaseAuth.instance;
     try {
       EasyLoading.show(
         status: 'Processing...',
@@ -42,7 +42,7 @@ class _LogUserInState extends State<LogUserIn> {
       // Handle error
       EasyLoading.dismiss();
       // ignore: use_build_context_synchronously
-      showErrorDialog(context, e.message ?? "");
+      showErrorDialog(context,  "login fail");
     }
   }
 

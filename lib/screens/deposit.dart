@@ -32,7 +32,19 @@ class _DepositPageState extends State<DepositPage> {
     if (amount.isEmpty) return;
     try {
       // Initialize Firebase Auth instance
+      EasyLoading.show(
+        status: 'Processing...',
+        maskType: EasyLoadingMaskType.black,
+        indicator: const Center(child: CircularProgressIndicator()),
+      );
       final FirebaseAuth auth = FirebaseAuth.instance;
+// Upload receipt to firebase
+      if (_selectedFiles?.first.path != null) {
+        print(_selectedFiles?.first.path);
+        final snapshot = await uploadFileWithLoadingDialog(context,
+            File(_selectedFiles!.first.path!), _selectedFiles!.first.path!);
+        if (snapshot.isEmpty) return;
+      }
 
       // Create a new document for the user in the Firestore collection
       final CollectionReference usersCollection =
@@ -58,19 +70,10 @@ class _DepositPageState extends State<DepositPage> {
   Future<void> recordDepositTransactions() async {
     if (amount.isEmpty) return;
     try {
-      EasyLoading.show(
-        status: 'Processing...',
-        maskType: EasyLoadingMaskType.black,
-        indicator: const Center(child: CircularProgressIndicator()),
-      );
+      
 
       // Initialize Firebase Auth instance
       final FirebaseAuth auth = FirebaseAuth.instance;
-
-      // Upload receipt to firebase
-      final snapshot = await uploadFileWithLoadingDialog(
-          context, File(_selectedFiles!.first.path!), receipt);
-      if (snapshot.isEmpty) return;
 
       // Create a new document for the user in the Firestore collection
       final CollectionReference usersCollection =

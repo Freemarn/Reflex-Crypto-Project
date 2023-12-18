@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:crypto_bomb/screens/dashboard_page.dart';
 import 'package:crypto_bomb/screens/deposit.dart';
 import 'package:crypto_bomb/screens/profile_page.dart';
@@ -322,12 +322,12 @@ class _UserDashboardState extends State<UserDashboard> {
                   ),
                   child: Column(
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(right: 40),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 22,
                               child: CircleAvatar(
                                 radius: 18,
@@ -335,13 +335,13 @@ class _UserDashboardState extends State<UserDashboard> {
                                     AssetImage("lib/assets/images/p3.jpg"),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 15,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   'welcome',
                                   style: TextStyle(
                                       fontSize: 17,
@@ -349,8 +349,8 @@ class _UserDashboardState extends State<UserDashboard> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  'Jeff paul',
-                                  style: TextStyle(
+                                  auth.currentUser?.displayName ?? "",
+                                  style: const TextStyle(
                                       fontSize: 13,
                                       color: AppColors.sidebarTextColor),
                                 )

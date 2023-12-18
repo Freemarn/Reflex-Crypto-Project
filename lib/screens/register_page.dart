@@ -16,10 +16,6 @@ import '../utilis/app_dialog.dart';
 class RegisterUser extends StatefulWidget {
   const RegisterUser({super.key});
 
-<<<<<<< HEAD
-  @override
-=======
->>>>>>> c5f086da375413c6247ab9a727fb9d47ed38267f
   State<RegisterUser> createState() => _RegisterUserState();
 }
 
@@ -63,12 +59,12 @@ class _RegisterUserState extends State<RegisterUser> {
         'phonenumber': _phonenumber,
         'referralId': _referralId,
         'country': _country,
-        'deposited': 0.00,
-        'profit': 0.00,
-        'packages': 0,
-        'activePackages': 0,
-        'refBonus': 0.00,
-        'balance': 0.00,
+        'deposited': '0.00',
+        'profit': '0.00',
+        'packages': '0',
+        'activePackages': '0',
+        'refBonus': '0.00',
+        'balance': '0.00',
       }).then((_) {
        auth.currentUser?.updateDisplayName(_fullname);
         Get.snackbar("Message", "Account creation successful");
