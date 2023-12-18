@@ -1,9 +1,13 @@
-
-import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import 'package:crypto_bomb/utilis/app_colors.dart';
+
 class AnnouncementCard extends StatefulWidget {
-  const AnnouncementCard({super.key});
+  const AnnouncementCard({
+    Key? key,
+    required this.message,
+  }) : super(key: key);
+  final String message;
 
   @override
   State<AnnouncementCard> createState() => _AnnouncementCardState();
@@ -33,11 +37,12 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
           ],
         ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        const Padding(
-          padding: EdgeInsets.only(left: 5),
+         Padding(
+          padding: const  EdgeInsets.only(left: 5),
           child: Text(
-            'You just deposited 5,000\$ into your dashboard, contact your investment manager for more informatioon,\nthank you for choosing cryptoflex, lorem ipsum dolor sit amet, consectetuer adipscing elit, sed diam nonummy',
-            style: TextStyle(
+            widget.message,
+            // 'You just deposited 5,000\$ into your dashboard, contact your investment manager for more informatioon,\nthank you for choosing cryptoflex, lorem ipsum dolor sit amet, consectetuer adipscing elit, sed diam nonummy',
+            style: const  TextStyle(
                 fontSize: 12,
                 color: AppColors.headerTextColor,
                 fontWeight: FontWeight.w300),
@@ -95,7 +100,6 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                         fontSize: 9,
                         color: AppColors.sidebarTextColor.withOpacity(0.7)),
                   ),
-                  
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.025,
                   )

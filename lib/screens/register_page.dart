@@ -7,65 +7,82 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+
+import '../utilis/app_dialog.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({super.key});
-
 
   State<RegisterUser> createState() => _RegisterUserState();
 }
 
 class _RegisterUserState extends State<RegisterUser> {
- String _email = "";
- String _password = "";
- String _username = "";
- String _fullname = "";
- String _phonenumber = "";
- String _referralId = "";
- String _country = "";
-
+  String _email = "";
+  String _password = "";
+  String _username = "";
+  String _fullname = "";
+  String _phonenumber = "";
+  String _referralId = "";
+  String _country = "";
 
   Future<void> createUser() async {
-  try {
-    // Initialize Firebase Auth instance
-    final FirebaseAuth auth = FirebaseAuth.instance;
+    try {
+      EasyLoading.show(
+        status: 'Processing...',
+        maskType: EasyLoadingMaskType.black,
+        indicator: const Center(child: CircularProgressIndicator()),
+      );
 
-    // Create a new user account
-    final UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-      email: _email,
-      password: _password,
-    );
+      // Initialize Firebase Auth instance
+      final FirebaseAuth auth = FirebaseAuth.instance;
 
-    // Get the current user's ID
-    final String uid = userCredential.user!.uid;
+      // Create a new user account
+      final UserCredential userCredential =
+          await auth.createUserWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      );
 
-    // Create a new document for the user in the Firestore collection
-    final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
-    await usersCollection.doc(uid).set({
-      'email': _email,
-      'username': _username,
-      'fullname': _fullname,
-      'phonenumber': _phonenumber,
-      'referralId': _referralId,
-      'country': _country,
-      'deposited': 0.00, 
-      'profit': 0.00,
-      'packages': 0, 
-      'activePackages': 0, 
-      'refBonus': 0.00, 
-      'balance': 0.00,
+      // Get the current user's ID
+      final String uid = userCredential.user!.uid;
 
-    });
-    Navigator.of(context).push(MaterialPageRoute(
-    builder: (context) => const UserDashboard()));
-  } on FirebaseAuthException catch (e) {
-    // Handle Firebase authentication errors
-    print("Error creating user: $e");
-  } catch (e) {
-    // Handle other errors
-    print("Error creating user: $e");
-  }
+      // Create a new document for the user in the Firestore collection
+      final CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('users');
+      await usersCollection.doc(uid).set({
+        'email': _email,
+        'username': _username,
+        'fullname': _fullname,
+        'phonenumber': _phonenumber,
+        'referralId': _referralId,
+        'country': _country,
+        'deposited': 0.00,
+        'profit': 0.00,
+        'packages': 0,
+        'activePackages': 0,
+        'refBonus': 0.00,
+        'balance': 0.00,
+      }).then((_) {
+       auth.currentUser?.updateDisplayName(_fullname);
+        Get.snackbar("Message", "Account creation successful");
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const UserDashboard()));
+      });
+    } on FirebaseAuthException catch (e) {
+      EasyLoading.dismiss();
+      // ignore: use_build_context_synchronously
+      showErrorDialog(context, e.message ?? "");
+      // Handle Firebase authentication errors
+      print("Error creating user: $e");
+    } catch (e) {
+      // Handle other errors
+      // ignore: use_build_context_synchronously
+      showErrorDialog(context, "Error creating user: $e");
+      print("Error creating user: $e");
+    }
   }
 
   @override
@@ -188,7 +205,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   Row(
                     children: [
-                       RegistrationForm(
+                      RegistrationForm(
                           onChange: (value) => _username = value,
                           headerName: 'Username ',
                           options: '*',
@@ -197,7 +214,7 @@ class _RegisterUserState extends State<RegisterUser> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
-                       RegistrationForm(
+                      RegistrationForm(
                           onChange: (value) => _fullname = value,
                           headerName: 'full name ',
                           options: '*',
@@ -210,8 +227,8 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   Row(
                     children: [
-                       RegistrationForm(
-                        onChange: (value) => _email = value,
+                      RegistrationForm(
+                          onChange: (value) => _email = value,
                           headerName: 'Email Address ',
                           options: '*',
                           prefixIconUrl: Icons.alternate_email,
@@ -219,7 +236,7 @@ class _RegisterUserState extends State<RegisterUser> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
-                       RegistrationForm(
+                      RegistrationForm(
                           onChange: (value) => _phonenumber = value,
                           headerName: 'Phone Number ',
                           options: '*',
@@ -232,8 +249,8 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   Row(
                     children: [
-                       RegistrationForm(
-                      onChange: (value) => _password = value,
+                      RegistrationForm(
+                          onChange: (value) => _password = value,
                           headerName: 'Password ',
                           options: '*',
                           prefixIconUrl: Icons.visibility_outlined,
@@ -253,8 +270,8 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   Row(
                     children: [
-                       RegistrationForm(
-               onChange: (value) => _country = value,
+                      RegistrationForm(
+                          onChange: (value) => _country = value,
                           headerName: 'Country ',
                           options: '*',
                           prefixIconUrl: Icons.location_on_outlined,
@@ -262,8 +279,8 @@ class _RegisterUserState extends State<RegisterUser> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.02,
                       ),
-                       RegistrationForm(
-                        onChange: (value) => _referralId = value,
+                      RegistrationForm(
+                          onChange: (value) => _referralId = value,
                           headerName: 'Referral ID ',
                           prefixIconUrl: Icons.link_outlined,
                           hintTitle: 'Referral id optional'),
@@ -274,9 +291,8 @@ class _RegisterUserState extends State<RegisterUser> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      // Create user 
-                     await  createUser();
-             
+                      // Create user
+                      await createUser();
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.1,

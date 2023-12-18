@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_bomb/screens/dashboard_page.dart';
 import 'package:crypto_bomb/screens/deposit.dart';
 import 'package:crypto_bomb/screens/profile_page.dart';
@@ -5,6 +6,7 @@ import 'package:crypto_bomb/screens/support_page.dart';
 import 'package:crypto_bomb/screens/transaction_page.dart';
 import 'package:crypto_bomb/screens/withdrawal_page.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserDashboard extends StatefulWidget {
@@ -29,6 +31,12 @@ class _UserDashboardState extends State<UserDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = FirebaseAuth.instance;
+    final user = auth.currentUser;
+
+    if (user == null) {
+      return const Center(child: Text('No user logged in'));
+    }
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -147,22 +155,22 @@ class _UserDashboardState extends State<UserDashboard> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: AppColors.fillAndBorderColor),
-                    child: const Row(
+                    child:  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CircleAvatar(
+                       const  CircleAvatar(
                           radius: 15,
                           backgroundImage:
                               AssetImage("lib/assets/images/p3.jpg"),
                         ),
                         Text(
-                          'Jeff paul',
-                          style: TextStyle(
+                          auth.currentUser?.displayName ?? "",
+                          style: const TextStyle(
                             fontSize: 13,
                             color: AppColors.headerTextColor,
                           ),
                         ),
-                        Icon(
+                       const  Icon(
                           Icons.arrow_drop_down,
                           size: 20,
                           color: AppColors.iconColor,
@@ -176,8 +184,8 @@ class _UserDashboardState extends State<UserDashboard> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.0123),
+          padding:
+              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.0123),
           child: Row(children: <Widget>[
             NavigationRail(
                 minWidth: MediaQuery.of(context).size.width * .13,
@@ -356,9 +364,9 @@ class _UserDashboardState extends State<UserDashboard> {
                       ),
                       GestureDetector(
                         onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const DepositPage()));
-                      },
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const DepositPage()));
+                        },
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.14,
                           height: MediaQuery.of(context).size.height * 0.065,
@@ -390,9 +398,9 @@ class _UserDashboardState extends State<UserDashboard> {
                       ),
                       GestureDetector(
                         onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const WithdrawalPage()));
-                      },
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const WithdrawalPage()));
+                        },
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.14,
                           height: MediaQuery.of(context).size.height * 0.065,

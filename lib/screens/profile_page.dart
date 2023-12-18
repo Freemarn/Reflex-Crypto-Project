@@ -1,5 +1,6 @@
 import 'package:crypto_bomb/components/register_fields.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -8,16 +9,20 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = FirebaseAuth.instance;
+    final user = auth.currentUser;
+
+    if (user == null) {
+      return const Center(child: Text('No user logged in'));
+    }
     return Scaffold(
       backgroundColor: AppColors.cardTextColor.withOpacity(0.2),
       body: Center(
         child: Container(
-          height: MediaQuery.of(context).size.height*0.8,
-          width: MediaQuery.of(context).size.width*0.7,
+          height: MediaQuery.of(context).size.height * 0.8,
+          width: MediaQuery.of(context).size.width * 0.7,
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20)
-          ),
+              color: Colors.white, borderRadius: BorderRadius.circular(20)),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -30,9 +35,10 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  'Jeff paul', // Replace with the user's name
-                  style: TextStyle(
+                Text(
+                  auth.currentUser?.displayName ??
+                      "", // Replace with the user's name
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -50,6 +56,7 @@ class ProfilePage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.02,
                     ),
                     const RegistrationForm(
+                      
                         headerName: 'Phone Number ',
                         options: '*',
                         prefixIconUrl: Icons.phone_outlined,
@@ -76,31 +83,28 @@ class ProfilePage extends StatelessWidget {
                         hintTitle: 'Full address'),
                   ],
                 ).animate().fadeIn(duration: 600.ms).slideY(),
-          
-          
-                 SizedBox(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-          
                 Container(
-                          width: MediaQuery.of(context).size.width * 0.08,
-                          height: MediaQuery.of(context).size.height * 0.06,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: AppColors.mainColor),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                'Update profile',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
+                  width: MediaQuery.of(context).size.width * 0.08,
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.mainColor),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        'Update profile',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.white,
                         ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

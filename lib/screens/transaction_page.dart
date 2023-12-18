@@ -1,21 +1,34 @@
+import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_bomb/components/announcement_card.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class TransactionsPage extends StatelessWidget {
+class TransactionsPage extends StatefulWidget {
   const TransactionsPage({super.key});
 
   @override
+  State<TransactionsPage> createState() => _TransactionsPageState();
+}
+
+class _TransactionsPageState extends State<TransactionsPage> {
+  final _firestore = FirebaseFirestore.instance;
+
+  @override
   Widget build(BuildContext context) {
+    final _collectionReference = _firestore.collection("transactions");
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+                               
     return Scaffold(
-      //backgroundColor: AppColors.sidebarTextColor.withOpacity(0.2),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height * 0.042,
-          horizontal: MediaQuery.of(context).size.width * 0.014,
-        ),
-        child:
-            SingleChildScrollView(
+        //backgroundColor: AppColors.sidebarTextColor.withOpacity(0.2),
+        body: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).size.height * 0.042,
+              horizontal: MediaQuery.of(context).size.width * 0.014,
+            ),
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   Container(
@@ -35,7 +48,8 @@ class TransactionsPage extends StatelessWidget {
                                 color: AppColors.mainColor,
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.007,
+                                width:
+                                    MediaQuery.of(context).size.width * 0.007,
                               ),
                               const Text(
                                 'Transaction History',
@@ -49,16 +63,44 @@ class TransactionsPage extends StatelessWidget {
                         ),
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.06),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
-                        const AnnouncementCard(),
+
+                        StreamBuilder(
+                            stream: _collectionReference.snapshots(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return Text("Error: ${snapshot.error}");
+                              }
+
+                              if (!snapshot.hasData) {
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              }
+                              
+                              final documents = snapshot.data!.docs.where((doc) => doc["uid"] == _auth.currentUser?.uid);
+
+                              final announcements = documents.map((document) {
+                                return AnnouncementCard(
+                                  message: document["message"],
+                                );
+                              }).toList();
+
+                              return ListView.builder(
+                                itemCount: announcements.length,
+                                  itemBuilder: (context, index) {
+                                return announcements[index];
+                              });
+                            }),
+
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
+                        // const AnnouncementCard(),
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.06),
                         Center(
@@ -66,7 +108,8 @@ class TransactionsPage extends StatelessWidget {
                           'No more Announcements',
                           style: TextStyle(
                               fontSize: 23,
-                              color: AppColors.sidebarTextColor.withOpacity(0.2)),
+                              color:
+                                  AppColors.sidebarTextColor.withOpacity(0.2)),
                         )),
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.07)
@@ -75,7 +118,6 @@ class TransactionsPage extends StatelessWidget {
                   ),
                 ],
               ),
-             )))
-;
+            )));
   }
 }
