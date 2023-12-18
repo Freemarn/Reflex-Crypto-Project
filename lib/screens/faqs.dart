@@ -1,4 +1,5 @@
-import 'package:crypto_bomb/utilis/app_colors.dart';
+
+import 'package:crypto_bomb/components/my_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class Faqs extends StatelessWidget {
@@ -6,8 +7,8 @@ class Faqs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppColors.headerTextColor,
+    return Scaffold(
+      appBar: myAppBar(context),
     );
   }
 }

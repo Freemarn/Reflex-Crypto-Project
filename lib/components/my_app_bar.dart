@@ -1,70 +1,103 @@
+import 'package:crypto_bomb/main.dart';
+import 'package:crypto_bomb/screens/about_us.dart';
+import 'package:crypto_bomb/screens/contact_us.dart';
+import 'package:crypto_bomb/screens/faqs.dart';
 import 'package:crypto_bomb/screens/login_page.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class MyAppBar extends StatelessWidget {
-  const MyAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
+AppBar myAppBar(BuildContext context) {
+  return AppBar(
+    automaticallyImplyLeading: false,
       toolbarHeight: MediaQuery.of(context).size.height*0.1,
       title: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 65),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Row(
+                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
-                      Text(
+                      const Text(
                         'crypto',
                         style: TextStyle(
                             color: AppColors.headerTextColor,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
+                      const Text(
                         'Flex',
                         style: TextStyle(
                             color: AppColors.mainColor,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 19,
                       ),
-                      Text(
-                        'Home',
-                        style: TextStyle(
-                            fontSize: 13, color: AppColors.cardTextColor),
+                      GestureDetector(
+                         onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const MyHomePage(title: 'Home',)));
+                         },
+                        child: const Text(
+                          'Home',
+                          style: TextStyle(
+                              fontSize: 13, color: AppColors.cardTextColor),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        'About Us',
-                        style: TextStyle(
-                            fontSize: 13, color: AppColors.cardTextColor),
+                      GestureDetector(
+                         onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const AboutUs()));
+                         },
+                        child: const Text(
+                          'About Us',
+                          style: TextStyle(
+                              fontSize: 13, color: AppColors.cardTextColor),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width:15,
                       ),
-                      Text(
-                        'FAQs',
-                        style: TextStyle(
-                            fontSize: 13, color: AppColors.cardTextColor),
+                      GestureDetector(
+                         onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Faqs()));
+                         },
+                        child: const Text(
+                          'FAQs',
+                          style: TextStyle(
+                              fontSize: 13, color: AppColors.cardTextColor),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        'Contact Us',
-                        style: TextStyle(
-                            fontSize: 13, color: AppColors.cardTextColor),
+                      GestureDetector(
+                         onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const ContactUs()));
+                         },
+                        child: const Text(
+                          'Contact Us',
+                          style: TextStyle(
+                              fontSize: 13, color: AppColors.cardTextColor),
+                        ),
                       )
                     ],
                   ),
@@ -149,8 +182,5 @@ class MyAppBar extends StatelessWidget {
                 ],
               ).animate().fadeIn(duration: 600.ms).slideX(),
             ),
-    )
-
-;
-  }
+    );
 }
