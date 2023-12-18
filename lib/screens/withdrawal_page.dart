@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
+import 'package:crypto_bomb/utilis/app_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 
 import 'package:lottie/lottie.dart';
 
@@ -11,6 +16,74 @@ class WithdrawalPage extends StatefulWidget {
 }
 
 class _WithdrawalPageState extends State<WithdrawalPage> {
+  String amount = "";
+  String withdrawalMethod = "";
+
+  final TextEditingController _editingController = TextEditingController();
+
+  Future<void> _withdrawal() async {
+    if (amount.isEmpty || withdrawalMethod.isEmpty) return;
+    try {
+      EasyLoading.show(
+        status: 'Processing...',
+        maskType: EasyLoadingMaskType.black,
+        indicator: const Center(child: CircularProgressIndicator()),
+      );
+      // Initialize Firebase Auth instance
+      final FirebaseAuth auth = FirebaseAuth.instance;
+
+      // Create a new document for the user in the Firestore collection
+      final CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('withdrawal');
+      await usersCollection.add({
+        "uid": auth.currentUser!.uid,
+        'amount': amount,
+        'fullname': auth.currentUser!.displayName,
+        'withdrawalMethod': withdrawalMethod,
+      });
+      await recordDepositTransactions();
+      Get.snackbar("Withdrawal", "Withdrawal successfull");
+      _editingController.clear();
+
+      EasyLoading.dismiss(); // hide loading indicator 
+    } on FirebaseAuthException catch (e) {
+      EasyLoading.dismiss();
+      showErrorDialog(context, e.message ?? "");
+      // Handle Firebase authentication errors
+      print("Error creating withdrawal: $e");
+    } catch (e) {
+      EasyLoading.dismiss();
+       showErrorDialog(context, "Transaction failed");
+      // Handle other errors
+      print("Error creating withdrawal: $e");
+    }
+  }
+
+  Future<void> recordDepositTransactions() async {
+    if (amount.isEmpty) return;
+    try {
+      // Initialize Firebase Auth instance
+      final FirebaseAuth auth = FirebaseAuth.instance;
+
+      // Create a new document for the user in the Firestore collection
+      final CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('transactions');
+      await usersCollection.add({
+        "uid": auth.currentUser!.uid,
+        'message':
+            "You just withdraw $amount\$ into your dashboard, contact your investment manager for more informatioon,\nthank you for choosing cryptoflex.",
+        "time": DateTime.now().toIso8601String(),
+      });
+      _editingController.clear();
+    } on FirebaseAuthException catch (e) {
+      // Handle Firebase authentication errors
+      print("Error in transactions: $e");
+    } catch (e) {
+      // Handle other errors
+      print("Error creating transaction: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,6 +202,8 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                             width: MediaQuery.of(context).size.width * 0.32,
                             height: MediaQuery.of(context).size.height * 0.08,
                             child: TextFormField(
+                              onChanged: (value) => amount = value,
+                              controller: _editingController,
                               decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
@@ -160,6 +235,11 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                             width: MediaQuery.of(context).size.width * 0.32,
                             height: MediaQuery.of(context).size.height * 0.08,
                             child: TextFormField(
+                              onChanged: (value) => withdrawalMethod = value,
+                              onFieldSubmitted: (value) async {
+                                withdrawalMethod = value;
+                                await _withdrawal();
+                              },
                               decoration: InputDecoration(
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),

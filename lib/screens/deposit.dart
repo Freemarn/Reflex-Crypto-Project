@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
+import 'package:crypto_bomb/utilis/app_dialog.dart';
+import 'package:crypto_bomb/utilis/upload_file.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class DepositPage extends StatefulWidget {
@@ -31,12 +37,14 @@ class _DepositPageState extends State<DepositPage> {
       // Create a new document for the user in the Firestore collection
       final CollectionReference usersCollection =
           FirebaseFirestore.instance.collection('deposit');
-      await usersCollection.doc(auth.currentUser!.uid).set({
+      await usersCollection.add({
         'amount': amount,
         'fullname': auth.currentUser!.displayName,
         'address': address,
         'receipt': receipt,
       });
+      await recordDepositTransactions();
+      Get.snackbar("Deposit", "Deposit successfull");
       _editingController.clear();
     } on FirebaseAuthException catch (e) {
       // Handle Firebase authentication errors
@@ -44,6 +52,48 @@ class _DepositPageState extends State<DepositPage> {
     } catch (e) {
       // Handle other errors
       print("Error creating user: $e");
+    }
+  }
+
+  Future<void> recordDepositTransactions() async {
+    if (amount.isEmpty) return;
+    try {
+      EasyLoading.show(
+        status: 'Processing...',
+        maskType: EasyLoadingMaskType.black,
+        indicator: const Center(child: CircularProgressIndicator()),
+      );
+
+      // Initialize Firebase Auth instance
+      final FirebaseAuth auth = FirebaseAuth.instance;
+
+      // Upload receipt to firebase
+      final snapshot = await uploadFileWithLoadingDialog(
+          context, File(_selectedFiles!.first.path!), receipt);
+      if (snapshot.isEmpty) return;
+
+      // Create a new document for the user in the Firestore collection
+      final CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('transactions');
+      await usersCollection.add({
+        "uid": auth.currentUser!.uid,
+        'message':
+            "You just deposited $amount\$ into your dashboard, contact your investment manager for more informatioon,\nthank you for choosing cryptoflex.",
+        "time": DateTime.now().toIso8601String(),
+      });
+      _editingController.clear();
+      EasyLoading.dismiss();
+    } on FirebaseAuthException catch (e) {
+      EasyLoading.dismiss();
+      // ignore: use_build_context_synchronously
+      showErrorDialog(context, e.message ?? "");
+      // Handle Firebase authentication errors
+      print("Error recording transaction: $e");
+    } catch (e) {
+      EasyLoading.dismiss();
+      showErrorDialog(context, "Transaction failed");
+      // Handle other errors
+      print("Error creating transaction: $e");
     }
   }
 
@@ -295,8 +345,8 @@ class _DepositPageState extends State<DepositPage> {
                             ),
                           const SizedBox(height: 15),
                           InkWell(
-                            onTap: () {
-                              deposit();
+                            onTap: () async {
+                              await deposit();
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.1,

@@ -7,12 +7,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+
+import '../utilis/app_dialog.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({super.key});
 
+<<<<<<< HEAD
   @override
+=======
+>>>>>>> c5f086da375413c6247ab9a727fb9d47ed38267f
   State<RegisterUser> createState() => _RegisterUserState();
 }
 
@@ -27,6 +34,12 @@ class _RegisterUserState extends State<RegisterUser> {
 
   Future<void> createUser() async {
     try {
+      EasyLoading.show(
+        status: 'Processing...',
+        maskType: EasyLoadingMaskType.black,
+        indicator: const Center(child: CircularProgressIndicator()),
+      );
+
       // Initialize Firebase Auth instance
       final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -50,25 +63,30 @@ class _RegisterUserState extends State<RegisterUser> {
         'phonenumber': _phonenumber,
         'referralId': _referralId,
         'country': _country,
-        'deposited': '0.00',
-        'profit':'0.00',
-        'packages':'0.00',
-        'activePackages': '0.00',
-        'refBonus':'0.00',
-        'balance': '0.00',
+        'deposited': 0.00,
+        'profit': 0.00,
+        'packages': 0,
+        'activePackages': 0,
+        'refBonus': 0.00,
+        'balance': 0.00,
+      }).then((_) {
+       auth.currentUser?.updateDisplayName(_fullname);
+        Get.snackbar("Message", "Account creation successful");
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const UserDashboard()));
       });
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const UserDashboard()));
     } on FirebaseAuthException catch (e) {
+      EasyLoading.dismiss();
+      // ignore: use_build_context_synchronously
+      showErrorDialog(context, e.message ?? "");
       // Handle Firebase authentication errors
       print("Error creating user: $e");
     } catch (e) {
       // Handle other errors
+      // ignore: use_build_context_synchronously
+      showErrorDialog(context, "Error creating user: $e");
       print("Error creating user: $e");
     }
-
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const UserDashboard()));
   }
 
   @override

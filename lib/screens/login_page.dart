@@ -4,8 +4,12 @@ import 'package:crypto_bomb/screens/register_page.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../utilis/app_dialog.dart';
 
 class LogUserIn extends StatefulWidget {
   const LogUserIn({super.key});
@@ -21,14 +25,24 @@ class _LogUserInState extends State<LogUserIn> {
   Future<void> _login(String email, String password) async {
     final FirebaseAuth auth = FirebaseAuth.instance;
     try {
-      await auth.signInWithEmailAndPassword(
+      EasyLoading.show(
+        status: 'Processing...',
+        maskType: EasyLoadingMaskType.black,
+        indicator: const Center(child: CircularProgressIndicator()),
+      );
+
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      Get.snackbar("Message", "Login successfull");
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => const UserDashboard()));
     } on FirebaseAuthException {
       // Handle error
+      EasyLoading.dismiss();
+      // ignore: use_build_context_synchronously
+      showErrorDialog(context, e.message ?? "");
     }
   }
 
@@ -152,7 +166,7 @@ class _LogUserInState extends State<LogUserIn> {
                   ),
                   Column(
                     children: [
-                       RegistrationForm(
+                      RegistrationForm(
                           onChange: (value) => _email = value,
                           headerName: 'Email ',
                           options: '*',
@@ -161,7 +175,7 @@ class _LogUserInState extends State<LogUserIn> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
-                       RegistrationForm(
+                      RegistrationForm(
                           onChange: (value) => _password = value,
                           headerName: 'Password ',
                           options: '*',
