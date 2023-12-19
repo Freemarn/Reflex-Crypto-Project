@@ -37,9 +37,11 @@ class RegistrationForm extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.012,
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.07,
-          width: MediaQuery.of(context).size.width * 0.17,
+          height: MediaQuery.of(context).size.height * 0.08,
+          width: MediaQuery.of(context).size.width * 0.18,
           child: TextFormField(
+          
+           
             onChanged: onChange,
             decoration: InputDecoration(
                 filled: true,

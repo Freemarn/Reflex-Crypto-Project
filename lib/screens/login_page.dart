@@ -211,7 +211,7 @@ class _LogUserInState extends State<LogUserIn> {
                     ).animate().fadeIn(duration: 600.ms).slideY(),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.17,
+                    height: MediaQuery.of(context).size.height * 0.15,
                   ),
                   const Row(
                     children: [

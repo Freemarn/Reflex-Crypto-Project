@@ -91,14 +91,14 @@ class _RegisterUserState extends State<RegisterUser> {
       backgroundColor: AppColors.mainColor.withOpacity(0.5),
       body: Center(
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.92,
-          width: MediaQuery.of(context).size.width * 0.7,
+          height: MediaQuery.of(context).size.height * 0.94,
+          width: MediaQuery.of(context).size.width * 0.73,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Row(children: [
               //SizedBox(width: MediaQuery.of(context).size.width * 0.08,),
               Column(
@@ -184,7 +184,7 @@ class _RegisterUserState extends State<RegisterUser> {
                     ],
                   ).animate().fadeIn(duration: 600.ms).slideX(),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
+                    height: MediaQuery.of(context).size.height * 0.018,
                   ),
                   const Text(
                     'welcome to cryptoflex!',
