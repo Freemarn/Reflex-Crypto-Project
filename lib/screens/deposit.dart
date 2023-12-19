@@ -41,7 +41,7 @@ class _DepositPageState extends State<DepositPage> {
         final fileBytes = await File(filePath).readAsBytes();
 
       final url = await uploadFileWithLoadingDialog(
-          context, fileBytes , path + receipt);
+          context, fileBytes , receipt);
       if (url.isEmpty) return;
 
       // Create a new document for the user in the Firestore collection
