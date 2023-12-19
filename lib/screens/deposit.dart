@@ -11,6 +11,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:path/path.dart';
 
 class DepositPage extends StatefulWidget {
   const DepositPage({super.key});
@@ -35,8 +36,12 @@ class _DepositPageState extends State<DepositPage> {
       final FirebaseAuth auth = FirebaseAuth.instance;
 
        // Upload receipt to firebase
+        final filePath = _selectedFiles!.first.path!
+    
+        final fileBytes = await File(filePath).readAsBytes();
+
       final url = await uploadFileWithLoadingDialog(
-          context, File(_selectedFiles!.first.path!), receipt);
+          context, fileBytes , path + receipt);
       if (url.isEmpty) return;
 
       // Create a new document for the user in the Firestore collection
