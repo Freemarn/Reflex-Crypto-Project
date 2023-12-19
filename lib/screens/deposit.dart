@@ -36,7 +36,8 @@ class _DepositPageState extends State<DepositPage> {
       final FirebaseAuth auth = FirebaseAuth.instance;
 
        // Upload receipt to firebase
-        final filePath = _selectedFiles!.first.path!
+        final filePath = _selectedFiles?.first.path
+          if (filePath == null) throw "Upload receipt";
     
         final fileBytes = await File(filePath).readAsBytes();
 
@@ -61,6 +62,7 @@ class _DepositPageState extends State<DepositPage> {
       print("Error creating user: $e");
     } catch (e) {
       // Handle other errors
+Get.snackbar("Deposit", "Deposit Failed");
       print("Error creating user: $e");
     }
   }
