@@ -5,34 +5,37 @@ import 'package:flutter/material.dart';
 
 Future<String> uploadFileWithLoadingDialog(
     context, File file, String path) async {
-  // Show loading dialog
+
+  // Show a loading dialog
   showDialog(
     context: context,
-    barrierDismissible: false, // prevent accidental dismissal
-    builder: (context) => const Center(child: CircularProgressIndicator()),
+    barrierDismissible: false,
+    builder: (context) => const  Center(child: CircularProgressIndicator()),
   );
 
-  try {
-    // Reference to the file in Firebase Storage
-    final storageReference = FirebaseStorage.instance.ref().child(path);
+  // Create a unique file path in Firebase Storage
+  final ref = FirebaseStorage.instance.ref().child("${DateTime.now().millisecondsSinceEpoch}.jpg");
 
-    // Upload the file
-    final uploadTask = storageReference.putFile(file);
+  // Upload the file to Firebase Storage
+  final uploadTask = ref.putFile(file);
 
-    // Listen for upload progress
-    final snapshot = uploadTask.snapshot;
+  // Listen for upload progress (optional)
+  /*
+  final snapshot = await uploadTask.snapshot();
+  // Update UI based on upload progress
+  */
 
-    // Close loading dialog
-    Navigator.pop(context);
+  // Wait for the upload to complete
+  await uploadTask;
 
-    // Return the download URL of the uploaded file
-    return await snapshot.ref.getDownloadURL();
-  } on FirebaseException catch (e) {
-    // Handle error and remove loading dialog
-    Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Error uploading file: ${e.message}')),
-    );
-    return "";
-  }
+  // Close the loading dialog
+  Navigator.pop(context);
+
+  // Get the download URL of the uploaded image
+  final downloadUrl = await ref.getDownloadURL();
+
+  // Return the download URL of the uploaded image
+  return downloadUrl;
+
+
 }

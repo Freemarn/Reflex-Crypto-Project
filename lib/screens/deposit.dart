@@ -34,6 +34,11 @@ class _DepositPageState extends State<DepositPage> {
       // Initialize Firebase Auth instance
       final FirebaseAuth auth = FirebaseAuth.instance;
 
+       // Upload receipt to firebase
+      final url = await uploadFileWithLoadingDialog(
+          context, File(_selectedFiles!.first.path!), receipt);
+      if (url.isEmpty) return;
+
       // Create a new document for the user in the Firestore collection
       final CollectionReference usersCollection =
           FirebaseFirestore.instance.collection('deposit');
@@ -41,7 +46,7 @@ class _DepositPageState extends State<DepositPage> {
         'amount': amount,
         'fullname': auth.currentUser!.displayName,
         'address': address,
-        'receipt': receipt,
+        'receipt': url,
       });
       await recordDepositTransactions();
       Get.snackbar("Deposit", "Deposit successfull");
@@ -67,10 +72,7 @@ class _DepositPageState extends State<DepositPage> {
       // Initialize Firebase Auth instance
       final FirebaseAuth auth = FirebaseAuth.instance;
 
-      // Upload receipt to firebase
-      final snapshot = await uploadFileWithLoadingDialog(
-          context, File(_selectedFiles!.first.path!), receipt);
-      if (snapshot.isEmpty) return;
+     
 
       // Create a new document for the user in the Firestore collection
       final CollectionReference usersCollection =
