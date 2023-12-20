@@ -160,8 +160,10 @@ class _UserDashboardState extends State<UserDashboard> {
                       children: [
                        const  CircleAvatar(
                           radius: 15,
-                          backgroundImage:
-                              AssetImage("lib/assets/images/p3.jpg"),
+                          child: Icon(Icons.person, color: AppColors.cardTextColor,),
+                          // backgroundImage:
+                          //     AssetImage("lib/assets/images/p3.jpg"),
+                          
                         ),
                         Text(
                           auth.currentUser?.displayName ?? "",
@@ -331,8 +333,8 @@ class _UserDashboardState extends State<UserDashboard> {
                               radius: 22,
                               child: CircleAvatar(
                                 radius: 18,
-                                backgroundImage:
-                                    AssetImage("lib/assets/images/p3.jpg"),
+                                
+                                    child: Icon(Icons.person, color: AppColors.cardTextColor,),
                               ),
                             ),
                             const SizedBox(

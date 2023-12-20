@@ -5,7 +5,10 @@ class PricePlans extends StatelessWidget {
   final String price;
   final String headerText;
   final Color planThemeColor;
-  const PricePlans({super.key, required this.planThemeColor, required this.headerText, required this.price});
+  final String tOne;
+  final String tTwo;
+  final String tThree;
+  const PricePlans({super.key, required this.planThemeColor, required this.headerText, required this.price, required this.tOne, required this.tTwo, required this.tThree});
 
   @override
   Widget build(BuildContext context) {
@@ -78,10 +81,10 @@ class PricePlans extends StatelessWidget {
                       const SizedBox(
                         width: 20,
                       ),
-                      const Center(
+                      Center(
                         child: Text(
-                          'Sample Text Here',
-                          style: TextStyle(
+                          tOne,
+                          style: const TextStyle(
                               fontSize: 12,
                               color: AppColors.headerTextColor,
                               fontWeight: FontWeight.w900),
@@ -120,10 +123,10 @@ class PricePlans extends StatelessWidget {
                       const SizedBox(
                         width: 20,
                       ),
-                      const Center(
+                      Center(
                         child: Text(
-                          'Sample Text Here',
-                          style: TextStyle(
+                          tTwo,
+                          style: const TextStyle(
                               fontSize: 12,
                               color: AppColors.headerTextColor,
                               fontWeight: FontWeight.w900),
@@ -162,10 +165,10 @@ class PricePlans extends StatelessWidget {
                       const SizedBox(
                         width: 20,
                       ),
-                      const Center(
+                      Center(
                         child: Text(
-                          'Sample Text Here',
-                          style: TextStyle(
+                          tThree,
+                          style: const TextStyle(
                               fontSize: 12,
                               color: AppColors.headerTextColor,
                               fontWeight: FontWeight.w900),
@@ -185,90 +188,8 @@ class PricePlans extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.check_rounded,
-                        size: 25,
-                        color: Colors.green.shade900,
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      const Center(
-                        child: Text(
-                          'Sample Text Here',
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: AppColors.headerTextColor,
-                              fontWeight: FontWeight.w900),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  height: 4,
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  color: AppColors.cardTextColor.withOpacity(0.2),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.check_rounded,
-                        size: 25,
-                        color: Colors.green.shade900,
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      const Center(
-                        child: Text(
-                          'Sample Text Here',
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: AppColors.headerTextColor,
-                              fontWeight: FontWeight.w900),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  height: 4,
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  color: AppColors.cardTextColor.withOpacity(0.2),
-                ),
-              ],
-            ),
-          ),
+        
+        
           const SizedBox(
             height: 30,
           ),

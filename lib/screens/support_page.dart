@@ -39,7 +39,7 @@ class SupportPage extends StatelessWidget {
                 SizedBox(
                   height: 200.0,
                   child: Lottie.network(
-                    'https://lottie.host/1e2cd061-adc7-4d04-b126-a623a5ed6366/AXvFQ9xjMG.json',
+                    'https://lottie.host/7d51ed03-2d6f-4919-a7c0-7f48bd966b2e/vMmSedyHDH.json',
                     repeat: true,
                     reverse: true,
                     animate: true,

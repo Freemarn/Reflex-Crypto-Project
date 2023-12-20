@@ -193,16 +193,26 @@ class _DashboardPageState extends State<DashboardPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   PricePlans(
+                      tOne: 'Max Duration: 6months',
+                    tTwo: 'Min Duration: 3months',
+                    tThree: 'Gift Bonus: \$100',
+                  
                     headerText: 'Basic',
                     planThemeColor: Colors.red.shade700,
                     price: '\$5,000',
                   ),
                   PricePlans(
+                    tOne: 'Max Duration: 6months',
+                    tTwo: 'Min Duration: 3months',
+                    tThree: 'Gift Bonus: \$100',
                     headerText: 'Standard',
                     planThemeColor: Colors.blue.shade900,
                     price: '\$10,000',
                   ),
                   const PricePlans(
+                       tOne: 'Max Duration: 6months',
+                    tTwo: 'Min Duration: 3months',
+                    tThree: 'Gift Bonus: \$100',
                       headerText: 'Premium',
                       planThemeColor: Colors.teal,
                       price: '\$100,000')
@@ -256,7 +266,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           GestureDetector(
                             onTap: () {
                               FlutterClipboard.copy(
-                                  'https://cryptoflex.com/jeff');
+                                  'https://cryptoflex.com/xyz');
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: const Text(
@@ -282,7 +292,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'https://cryptoflex.com/jeff',
+                                      'https://cryptoflex.com/xyz',
                                       style: TextStyle(
                                         color: AppColors.headerTextColor
                                             .withOpacity(0.7),

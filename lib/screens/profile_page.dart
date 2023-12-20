@@ -30,9 +30,10 @@ class ProfilePage extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage(
-                    "lib/assets/images/p3.jpg", // Replace with your image URL
-                  ),
+                   child: Icon(Icons.person, color: AppColors.cardTextColor,),
+                  // backgroundImage: AssetImage(
+                  //   "lib/assets/images/p3.jpg", // Replace with your image URL
+                  // ),
                 ),
                 const SizedBox(height: 16),
                 Text(
