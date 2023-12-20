@@ -12,6 +12,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:path/path.dart';
+import 'package:image_picker_web/image_picker_web.dart';
+
 
 class DepositPage extends StatefulWidget {
   const DepositPage({super.key});
@@ -107,21 +109,26 @@ Get.snackbar("Deposit", "Deposit Failed");
   }
 
   Future<void> _pickFiles() async {
-    try {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg'],
-      );
+  final picker = ImagePickerWeb();
+  final pickedFile = await picker.getImageAsFile();
 
-      if (result != null) {
-        setState(() {
-          _selectedFiles = result.files;
-          receipt = result.files.first.name;
-        });
-      }
-    } catch (e) {
-      print('Error picking files: $e');
-    }
+  if (pickedFile == null) {
+    return null; // User cancelled or no file selected
+  }
+
+  // Check file type (optional)
+  final extension = basename(pickedFile.path).split('.').last.toLowerCase();
+  if (!['jpg', 'jpeg', 'png', 'pdf'].contains(extension)) {
+    throw Exception('Invalid file type. Only images and PDFs allowed.');
+  }
+
+  // Convert pickedFile to Uint8List
+  final fileBytes = await pickedFile.readAsBytes();
+
+
+   _selectedFiles = fileBytes;
+    receipt = pickedFile.name ;
+   
   }
 
   @override
