@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
@@ -6,7 +7,7 @@ import 'package:crypto_bomb/utilis/app_dialog.dart';
 import 'package:crypto_bomb/utilis/upload_file.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
+
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -23,7 +24,7 @@ class DepositPage extends StatefulWidget {
 }
 
 class _DepositPageState extends State<DepositPage> {
-  List<PlatformFile>? _selectedFiles;
+  Uint8List? _selectedFiles;
 
   String amount = "";
   String address = "bcqfjj2334kkvvkfvfkjf855848054vjvmvmfjfkgkfkfkdkd888839";
@@ -38,13 +39,13 @@ class _DepositPageState extends State<DepositPage> {
       final FirebaseAuth auth = FirebaseAuth.instance;
 
        // Upload receipt to firebase
-        final filePath = _selectedFiles?.first.path;
-          if (filePath == null) throw "Upload receipt";
+        //final filePath = _selectedFiles?.first.path;
+          if (_selectedFiles == null) throw "Upload receipt";
     
-        final fileBytes = await File(filePath).readAsBytes();
+        //final fileBytes = await File(filePath).readAsBytes();
 
       final url = await uploadFileWithLoadingDialog(
-          context, fileBytes , receipt);
+          context, _selectedFiles! , receipt);
       if (url.isEmpty) return;
 
       // Create a new document for the user in the Firestore collection
@@ -110,26 +111,44 @@ Get.snackbar("Deposit", "Deposit Failed");
 
   Future<void> _pickFiles() async {
   final picker = ImagePickerWeb();
-  final pickedFile = await picker.getImageAsFile();
+  //final pickedFile = await ImagePickerWeb.getImageAsFile();
+  Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
 
-  if (pickedFile == null) {
+  if ( bytesFromPicker == null) {
     return null; // User cancelled or no file selected
   }
 
   // Check file type (optional)
-  final extension = basename(pickedFile.path).split('.').last.toLowerCase();
-  if (!['jpg', 'jpeg', 'png', 'pdf'].contains(extension)) {
-    throw Exception('Invalid file type. Only images and PDFs allowed.');
-  }
+  // final extension = basename(pickedFile.path).split('.').last.toLowerCase();
+  // if (!['jpg', 'jpeg', 'png', 'pdf'].contains(extension)) {
+  //   throw Exception('Invalid file type. Only images and PDFs allowed.');
+  //}
+
 
   // Convert pickedFile to Uint8List
-  final fileBytes = await pickedFile.readAsBytes();
+  //final fileBytes = await pickedFile!.readAsBytes();
 
 
-   _selectedFiles = fileBytes;
-    receipt = pickedFile.name ;
+   _selectedFiles = bytesFromPicker;
+    receipt = await getBaseNameFromUint8List(bytesFromPicker);
+
+
+    
    
   }
+
+Future<String> getBaseNameFromUint8List(Uint8List fileBytes) async { 
+  // Create a temporary file (replace with a suitable path for your app)
+  final tempFile = File('/tmp/temp_file.tmp'); await tempFile.writeAsBytes(fileBytes); 
+  // Get the base name from the file path 
+  final base = basename(tempFile.path); 
+  // Print or use the base name print('Base name: $basename'); 
+  String name = base ; 
+  // Delete the temporary file 
+  await tempFile.delete();
+  return name;
+   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -352,7 +371,7 @@ Get.snackbar("Deposit", "Deposit Failed");
                             Row(
                               children: _selectedFiles!.map((file) {
                                 return Text(
-                                  'File Name: ${file.name} & File Size: ${file.size} bytes',
+                                  'File Name: ${receipt} & File Size: ${_selectedFiles?.length} bytes',
                                   style: const TextStyle(
                                       fontSize: 12,
                                       color: AppColors.cardTextColor),
