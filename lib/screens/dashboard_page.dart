@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:clipboard/clipboard.dart';
 
 class DashboardPage extends StatefulWidget {
+  static const String routeName = "dashboard";
   const DashboardPage({super.key});
 
   @override
@@ -103,7 +104,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         return Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                               Column(
+                              Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -119,7 +120,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       accBal: packages)
                                 ],
                               ),
-                               Column(
+                              Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -135,7 +136,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       accBal: activePackages)
                                 ],
                               ),
-                               Column(
+                              Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -193,10 +194,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   PricePlans(
-                      tOne: 'Max Duration: 6months',
+                    tOne: 'Max Duration: 6months',
                     tTwo: 'Min Duration: 3months',
                     tThree: 'Gift Bonus: \$100',
-                  
                     headerText: 'Basic',
                     planThemeColor: Colors.red.shade700,
                     price: '\$5,000',
@@ -210,9 +210,9 @@ class _DashboardPageState extends State<DashboardPage> {
                     price: '\$10,000',
                   ),
                   const PricePlans(
-                       tOne: 'Max Duration: 6months',
-                    tTwo: 'Min Duration: 3months',
-                    tThree: 'Gift Bonus: \$100',
+                      tOne: 'Max Duration: 6months',
+                      tTwo: 'Min Duration: 3months',
+                      tThree: 'Gift Bonus: \$100',
                       headerText: 'Premium',
                       planThemeColor: Colors.teal,
                       price: '\$100,000')
@@ -266,7 +266,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           GestureDetector(
                             onTap: () {
                               FlutterClipboard.copy(
-                                  'https://cryptoflex.com/xyz');
+                                'https://cryptoflex.com/xyz',
+                              );
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: const Text(

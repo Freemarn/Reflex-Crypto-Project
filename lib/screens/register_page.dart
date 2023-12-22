@@ -30,10 +30,10 @@ class _RegisterUserState extends State<RegisterUser> {
 
   Future<void> createUser() async {
     try {
-      EasyLoading.show(
-        status: 'Processing...',
-        maskType: EasyLoadingMaskType.black,
-        indicator: const Center(child: CircularProgressIndicator()),
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()),
       );
 
       // Initialize Firebase Auth instance
@@ -66,13 +66,13 @@ class _RegisterUserState extends State<RegisterUser> {
         'refBonus': '0.00',
         'balance': '0.00',
       }).then((_) {
-       auth.currentUser?.updateDisplayName(_fullname);
+        auth.currentUser?.updateDisplayName(_fullname);
         Get.snackbar("Message", "Account creation successful");
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const UserDashboard()));
       });
     } on FirebaseAuthException catch (e) {
-      EasyLoading.dismiss();
+      Navigator.pop(context);
       // ignore: use_build_context_synchronously
       showErrorDialog(context, e.message ?? "");
       // Handle Firebase authentication errors

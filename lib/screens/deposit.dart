@@ -11,10 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:path/path.dart';
-import 'package:image_picker_web/image_picker_web.dart';
-
 
 class DepositPage extends StatefulWidget {
   const DepositPage({super.key});
@@ -24,7 +23,7 @@ class DepositPage extends StatefulWidget {
 }
 
 class _DepositPageState extends State<DepositPage> {
-  Uint8List? _selectedFiles;
+  File? _selectedFiles;
 
   String amount = "";
   String address = "bcqfjj2334kkvvkfvfkjf855848054vjvmvmfjfkgkfkfkdkd888839";
@@ -32,20 +31,26 @@ class _DepositPageState extends State<DepositPage> {
 
   final TextEditingController _editingController = TextEditingController();
 
-  Future<void> deposit() async {
+  Future<void> deposit(context) async {
     if (amount.isEmpty) return;
     try {
       // Initialize Firebase Auth instance
       final FirebaseAuth auth = FirebaseAuth.instance;
 
-       // Upload receipt to firebase
-        //final filePath = _selectedFiles?.first.path;
-          if (_selectedFiles == null) throw "Upload receipt";
-    
-        //final fileBytes = await File(filePath).readAsBytes();
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()),
+      );
 
-      final url = await uploadFileWithLoadingDialog(
-          context, _selectedFiles! , receipt);
+      // Upload receipt to firebase
+      //final filePath = _selectedFiles?.first.path;
+      if (_selectedFiles == null) throw "Upload receipt";
+
+      //final fileBytes = await File(filePath).readAsBytes();
+
+      final url =
+          await uploadFileWithLoadingDialog(context, _selectedFiles!, receipt);
       if (url.isEmpty) return;
 
       // Create a new document for the user in the Firestore collection
@@ -57,32 +62,27 @@ class _DepositPageState extends State<DepositPage> {
         'address': address,
         'receipt': url,
       });
-      await recordDepositTransactions();
+      await recordDepositTransactions(context);
+      Navigator.pop(context);
       Get.snackbar("Deposit", "Deposit successfull");
       _editingController.clear();
     } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
       // Handle Firebase authentication errors
       print("Error creating user: $e");
     } catch (e) {
+      Navigator.pop(context);
       // Handle other errors
-Get.snackbar("Deposit", "Deposit Failed");
+      Get.snackbar("Deposit", "Deposit Failed");
       print("Error creating user: $e");
     }
   }
 
-  Future<void> recordDepositTransactions() async {
+  Future<void> recordDepositTransactions(context) async {
     if (amount.isEmpty) return;
     try {
-      EasyLoading.show(
-        status: 'Processing...',
-        maskType: EasyLoadingMaskType.black,
-        indicator: const Center(child: CircularProgressIndicator()),
-      );
-
       // Initialize Firebase Auth instance
       final FirebaseAuth auth = FirebaseAuth.instance;
-
-     
 
       // Create a new document for the user in the Firestore collection
       final CollectionReference usersCollection =
@@ -94,15 +94,15 @@ Get.snackbar("Deposit", "Deposit Failed");
         "time": DateTime.now().toIso8601String(),
       });
       _editingController.clear();
-      EasyLoading.dismiss();
+      // Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      EasyLoading.dismiss();
+      // Navigator.pop(context);
       // ignore: use_build_context_synchronously
       showErrorDialog(context as BuildContext, e.message ?? "");
       // Handle Firebase authentication errors
       print("Error recording transaction: $e");
     } catch (e) {
-      EasyLoading.dismiss();
+      // Navigator.pop(context);
       showErrorDialog(context as BuildContext, "Transaction failed");
       // Handle other errors
       print("Error creating transaction: $e");
@@ -110,45 +110,41 @@ Get.snackbar("Deposit", "Deposit Failed");
   }
 
   Future<void> _pickFiles() async {
-  final picker = ImagePickerWeb();
-  //final pickedFile = await ImagePickerWeb.getImageAsFile();
-  Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
+    final file = await ImagePicker.platform
+        .getImageFromSource(source: ImageSource.gallery);
 
-  if ( bytesFromPicker == null) {
-    return null; // User cancelled or no file selected
+    if (file == null) {
+      return; // User cancelled or no file selected
+    }
+
+    // Check file type (optional)
+    // final extension = basename(pickedFile.path).split('.').last.toLowerCase();
+    // if (!['jpg', 'jpeg', 'png', 'pdf'].contains(extension)) {
+    //   throw Exception('Invalid file type. Only images and PDFs allowed.');
+    //}
+
+    // Convert pickedFile to Uint8List
+    //final fileBytes = await pickedFile!.readAsBytes();
+    final path = file.path;
+    // if (path == null) return;
+
+    _selectedFiles = File(path);
+    receipt = file.name;
+
+    setState(() {});
   }
 
-  // Check file type (optional)
-  // final extension = basename(pickedFile.path).split('.').last.toLowerCase();
-  // if (!['jpg', 'jpeg', 'png', 'pdf'].contains(extension)) {
-  //   throw Exception('Invalid file type. Only images and PDFs allowed.');
-  //}
-
-
-  // Convert pickedFile to Uint8List
-  //final fileBytes = await pickedFile!.readAsBytes();
-
-
-   _selectedFiles = bytesFromPicker;
-    receipt = await getBaseNameFromUint8List(bytesFromPicker);
-
-
-    
-   
-  }
-
-Future<String> getBaseNameFromUint8List(Uint8List fileBytes) async { 
-  // Create a temporary file (replace with a suitable path for your app)
-  final tempFile = File('/tmp/temp_file.tmp'); await tempFile.writeAsBytes(fileBytes); 
-  // Get the base name from the file path 
-  final base = basename(tempFile.path); 
-  // Print or use the base name print('Base name: $basename'); 
-  String name = base ; 
-  // Delete the temporary file 
-  await tempFile.delete();
-  return name;
-   }
-
+// Future<String> getBaseNameFromUint8List(Uint8List fileBytes) async {
+//   // Create a temporary file (replace with a suitable path for your app)
+//   final tempFile = File('/tmp/temp_file.tmp'); await tempFile.writeAsBytes(fileBytes);
+//   // Get the base name from the file path
+//   final base = basename(tempFile.path);
+//   // Print or use the base name print('Base name: $basename');
+//   String name = base ;
+//   // Delete the temporary file
+//   await tempFile.delete();
+//   return name;
+//    }
 
   @override
   Widget build(BuildContext context) {
@@ -189,8 +185,9 @@ Future<String> getBaseNameFromUint8List(Uint8List fileBytes) async {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
-                        'Secure Server',
+                      Text(
+                        receipt,
+                        // 'Secure Server',
                         style: TextStyle(
                             fontSize: 12, color: AppColors.cardTextColor),
                       ),
@@ -320,7 +317,7 @@ Future<String> getBaseNameFromUint8List(Uint8List fileBytes) async {
                                   backgroundColor:
                                       Colors.lightGreen.withOpacity(0.5),
                                   dismissDirection: DismissDirection.vertical,
-                                  duration: Durations.medium2,
+                                  // duration: Durations.medium2,
                                 ),
                               );
                             },
@@ -368,20 +365,15 @@ Future<String> getBaseNameFromUint8List(Uint8List fileBytes) async {
                           ),
                           const SizedBox(height: 10),
                           if (_selectedFiles != null)
-                            Row(
-                              children: _selectedFiles!.map((file) {
-                                return Text(
-                                  'File Name: ${receipt} & File Size: ${_selectedFiles?.length} bytes',
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      color: AppColors.cardTextColor),
-                                );
-                              }).toList(),
+                            Text(
+                              'File Name: ${receipt} & File Size: ${_selectedFiles?.length} bytes',
+                              style: const TextStyle(
+                                  fontSize: 12, color: AppColors.cardTextColor),
                             ),
                           const SizedBox(height: 15),
                           InkWell(
                             onTap: () async {
-                              await deposit();
+                              await deposit(context);
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.1,

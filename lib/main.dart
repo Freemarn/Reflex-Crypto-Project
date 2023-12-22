@@ -16,6 +16,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:lottie/lottie.dart';
 
+import 'screens/dashboard_page.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
               switch (routeSettings.name) {
                 case AdminPanel.routeName:
                   return const AdminPanel();
+                case DashboardPage.routeName:
+                  return const DashboardPage();
                 default:
                   return const MyHomePage(title: 'Crypto bomb');
               }
@@ -1666,14 +1670,12 @@ class _MyHomePageState extends State<MyHomePage>
             )),
             Positioned(
               top: 435,
-              
               left: 100,
               child: Container(
                 height: 50,
                 width: 50,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  
                 ),
                 child: FloatingActionButton(
                   onPressed: () {},

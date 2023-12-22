@@ -25,10 +25,10 @@ class _LogUserInState extends State<LogUserIn> {
   Future<void> _login(String email, String password) async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     try {
-      EasyLoading.show(
-        status: 'Processing...',
-        maskType: EasyLoadingMaskType.black,
-        indicator: const Center(child: CircularProgressIndicator()),
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()),
       );
 
       await _auth.signInWithEmailAndPassword(
@@ -40,9 +40,9 @@ class _LogUserInState extends State<LogUserIn> {
           .push(MaterialPageRoute(builder: (context) => const UserDashboard()));
     } on FirebaseAuthException {
       // Handle error
-      EasyLoading.dismiss();
+      Navigator.pop(context);
       // ignore: use_build_context_synchronously
-      showErrorDialog(context,  "login fail");
+      showErrorDialog(context, "login fail");
     }
   }
 
