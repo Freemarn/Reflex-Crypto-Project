@@ -13,13 +13,14 @@ class FaqCard extends StatelessWidget {
         const Icon(
           Icons.circle_outlined,
           color: AppColors.mainColor,
+          size: 13,
         ),
         const SizedBox(
           width: 10,
         ),
         Container(
-          height: 100,
-          width: 3,
+          height: 70,
+          width: 2,
           color: AppColors.mainColor,
         ),
         const SizedBox(
@@ -33,7 +34,7 @@ class FaqCard extends StatelessWidget {
               headerText,
               style: const TextStyle(
                 color: AppColors.headerTextColor,
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
             ),

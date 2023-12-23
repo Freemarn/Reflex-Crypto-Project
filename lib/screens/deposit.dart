@@ -126,8 +126,9 @@ Get.snackbar("Deposit", "Deposit Failed");
 
 
   // Convert pickedFile to Uint8List
+  print('bytes');
   //final fileBytes = await pickedFile!.readAsBytes();
-
+print(bytesFromPicker);
 
    _selectedFiles = bytesFromPicker;
     receipt = await getBaseNameFromUint8List(bytesFromPicker);

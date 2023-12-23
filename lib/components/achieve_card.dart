@@ -12,8 +12,8 @@ class AchieveCard extends StatelessWidget {
     return Row(
       children: [
         Container(
-          height: MediaQuery.of(context).size.height * 0.07,
-          width: MediaQuery.of(context).size.width * 0.035,
+             height: 50,
+                          width: 50,
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
