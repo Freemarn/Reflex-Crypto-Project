@@ -74,13 +74,13 @@ class _RegisterUserState extends State<RegisterUser> {
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       // ignore: use_build_context_synchronously
-      showErrorDialog(context, e.message ?? "");
+      showErrorDialog(context, "Error", e.message ?? "");
       // Handle Firebase authentication errors
       print("Error creating user: $e");
     } catch (e) {
       // Handle other errors
       // ignore: use_build_context_synchronously
-      showErrorDialog(context, "Error creating user: $e");
+      showErrorDialog(context, "Error", "Error creating user: $e");
       print("Error creating user: $e");
     }
   }

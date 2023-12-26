@@ -42,7 +42,7 @@ class _LogUserInState extends State<LogUserIn> {
       // Handle error
       Navigator.pop(context);
       // ignore: use_build_context_synchronously
-      showErrorDialog(context, "login fail");
+      showErrorDialog(context,"Error", "login failed");
     }
   }
 

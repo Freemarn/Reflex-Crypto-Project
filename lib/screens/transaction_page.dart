@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_bomb/components/announcement_card.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
@@ -20,7 +18,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
   Widget build(BuildContext context) {
     final _collectionReference = _firestore.collection("transactions");
     final FirebaseAuth _auth = FirebaseAuth.instance;
-                               
+
     return Scaffold(
         //backgroundColor: AppColors.sidebarTextColor.withOpacity(0.2),
         body: Padding(
@@ -75,8 +73,10 @@ class _TransactionsPageState extends State<TransactionsPage> {
                                 return const Center(
                                     child: CircularProgressIndicator());
                               }
-                              
-                              final documents = snapshot.data!.docs.where((doc) => doc["uid"] == _auth.currentUser?.uid);
+
+                              final documents = snapshot.data!.docs.where(
+                                  (doc) =>
+                                      doc["uid"] == _auth.currentUser?.uid);
 
                               final announcements = documents.map((document) {
                                 return AnnouncementCard(
@@ -85,13 +85,14 @@ class _TransactionsPageState extends State<TransactionsPage> {
                               }).toList();
 
                               return ListView.builder(
-                                itemCount: announcements.length,
+                                  itemCount: announcements.length,
                                   itemBuilder: (context, index) {
-                                return announcements[index];
-                              });
+                                    return announcements[index];
+                                    
+                                  });
                             }),
 
-                        // const AnnouncementCard(),
+                        // const
                         // const AnnouncementCard(),
                         // const AnnouncementCard(),
                         // const AnnouncementCard(),

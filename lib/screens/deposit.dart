@@ -98,12 +98,12 @@ class _DepositPageState extends State<DepositPage> {
     } on FirebaseAuthException catch (e) {
       // Navigator.pop(context);
       // ignore: use_build_context_synchronously
-      showErrorDialog(context as BuildContext, e.message ?? "");
+      showErrorDialog(context as BuildContext, "Error", e.message! );
       // Handle Firebase authentication errors
       print("Error recording transaction: $e");
     } catch (e) {
       // Navigator.pop(context);
-      showErrorDialog(context as BuildContext, "Transaction failed");
+      showErrorDialog(context as BuildContext, "Error", "Transaction failed");
       // Handle other errors
       print("Error creating transaction: $e");
     }
@@ -366,7 +366,7 @@ class _DepositPageState extends State<DepositPage> {
                           const SizedBox(height: 10),
                           if (_selectedFiles != null)
                             Text(
-                              'File Name: ${receipt} & File Size: ${_selectedFiles?.length} bytes',
+                              'File Name: receipt & File Size: ${_selectedFiles?.length} bytes',
                               style: const TextStyle(
                                   fontSize: 12, color: AppColors.cardTextColor),
                             ),

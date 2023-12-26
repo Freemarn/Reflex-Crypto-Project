@@ -24,11 +24,12 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
   Future<void> _withdrawal() async {
     if (amount.isEmpty || withdrawalMethod.isEmpty) return;
     try {
-      EasyLoading.show(
-        status: 'Processing...',
-        maskType: EasyLoadingMaskType.black,
-        indicator: const Center(child: CircularProgressIndicator()),
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()),
       );
+
       // Initialize Firebase Auth instance
       final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -41,19 +42,19 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
         'fullname': auth.currentUser!.displayName,
         'withdrawalMethod': withdrawalMethod,
       });
-      await recordDepositTransactions();
+      await recordDepositTransactions().then((value) => Navigator.pop(context));
       Get.snackbar("Withdrawal", "Withdrawal successfull");
       _editingController.clear();
-
-      EasyLoading.dismiss(); // hide loading indicator 
+      showErrorDialog(context, "Completed", "SUCCESSFUL");
+      // hide loading indicator
     } on FirebaseAuthException catch (e) {
-      EasyLoading.dismiss();
-      showErrorDialog(context, e.message ?? "");
+      Navigator.pop(context);
+      showErrorDialog(context, "Error", e.message ?? "");
       // Handle Firebase authentication errors
       print("Error creating withdrawal: $e");
     } catch (e) {
-      EasyLoading.dismiss();
-       showErrorDialog(context, "Transaction failed");
+      Navigator.pop(context);
+      showErrorDialog(context, "Error", "Transaction failed");
       // Handle other errors
       print("Error creating withdrawal: $e");
     }
@@ -265,23 +266,29 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                             ),
                           ),
                           const SizedBox(height: 15),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.1,
-                            height: MediaQuery.of(context).size.height * 0.05,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(7),
-                                color: AppColors.mainColor),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  'Submit Request',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.white,
+                          InkWell(
+                            onTap: () async {
+                              await _withdrawal();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7),
+                                  color: AppColors.mainColor),
+                              child: const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    'Submit Request',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           )
                         ],
