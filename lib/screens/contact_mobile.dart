@@ -322,6 +322,7 @@ class _ContactMobileState extends State<ContactMobile> {
          
         ),
       ),
+      
       drawer: Drawer(
         backgroundColor: Colors.black.withOpacity(0.4),
         child: Column(

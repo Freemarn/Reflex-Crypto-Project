@@ -12,7 +12,7 @@ AppBar myAppBar(BuildContext context) {
     automaticallyImplyLeading: false,
     toolbarHeight: MediaQuery.of(context).size.height * 0.1,
     title: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 65),
+      padding: const EdgeInsets.symmetric(horizontal: 45),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 
+import 'screens/dashboard_page.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
               switch (routeSettings.name) {
                 case AdminPanel.routeName:
                   return const AdminPanel();
+                case DashboardPage.routeName:
+                  return const DashboardPage();
                 default:
                   return const MyHomePage(title: 'Crypto bomb');
               }
@@ -83,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
         body: LayoutBuilder(builder: (context, Constraints) {
-        if (Constraints.maxWidth > 1200) {
+        if (Constraints.maxWidth > 1150) {
           return const MainDesktop();
         } else {
           return const MainMobile();

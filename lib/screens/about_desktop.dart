@@ -22,7 +22,7 @@ class AboutDesktop extends StatelessWidget {
                 color: AppColors.cardTextColor.withOpacity(0.1),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 30, horizontal: 85),
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
                   child: Column(
                     children: [
                       Row(
@@ -43,7 +43,7 @@ class AboutDesktop extends StatelessWidget {
                               const Text(
                                 'About Crypto Flex.',
                                 style: TextStyle(
-                                    fontSize: 50,
+                                    fontSize: 40,
                                     color: AppColors.headerTextColor,
                                     fontWeight: FontWeight.w900),
                               ),
@@ -71,7 +71,7 @@ class AboutDesktop extends StatelessWidget {
                 height: 600,
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 30, horizontal: 85),
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
                   child: Column(
                     children: [
                       Row(
@@ -83,14 +83,14 @@ class AboutDesktop extends StatelessWidget {
                               const Text(
                                 'Achievements.',
                                 style: TextStyle(
-                                    fontSize: 50,
+                                    fontSize: 40,
                                     color: AppColors.headerTextColor,
                                     fontWeight: FontWeight.w900),
                               ),
                               Text(
                                 'We have unlocked a new dimension in our crypto journey with all of our\nAchievements, cryptoflex is the ultimate platform for recognizing and celebrating\n your milestones in the world of digital assets. Whether you\'re a seasoned trader, a blockchain\n enthusiast, or just starting your crypto adventure, Cryptoflexturns your accomplishments\n into badges of honor.',
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 15,
                                   color: Colors.grey.withOpacity(0.7),
                                 ),
                               ),
@@ -133,7 +133,7 @@ class AboutDesktop extends StatelessWidget {
                             ],
                           ).animate().fadeIn(duration: 400.ms).slideX(begin: 1),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.55,
+                            height: MediaQuery.of(context).size.height * 0.44,
                             child: Lottie.network(
                               'https://lottie.host/d32a85d7-5431-44e1-95c2-ad3daafb3607/g1XkqG0NcB.json',
                               repeat: true,
@@ -151,14 +151,14 @@ class AboutDesktop extends StatelessWidget {
                 color: AppColors.cardTextColor.withOpacity(0.1),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 30, horizontal: 85),
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.55,
+                            height: MediaQuery.of(context).size.height * 0.44,
                             child: Lottie.network(
                               'https://lottie.host/aaf965dc-db99-430c-822a-17fd31e0e7d9/l2LFj779p4.json',
                               repeat: true,
@@ -179,7 +179,7 @@ class AboutDesktop extends StatelessWidget {
                               Text(
                                 'As a platform, we are keened on Defining a compelling and actionable strategic\nvision that aligns with the organization\'s mission.\nStreamline internal processes and workflows to enhance operational efficiency.\nIdentify areas for improvement, Foster a culture of innovation and adaptability',
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 15,
                                   color: Colors.grey.withOpacity(0.7),
                                 ),
                               ),

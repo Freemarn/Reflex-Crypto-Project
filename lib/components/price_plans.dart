@@ -13,8 +13,8 @@ class PricePlans extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.86,
-      width: MediaQuery.of(context).size.width * 0.22,
+      height: 450,
+      width: 260,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: const BorderRadius.only(
@@ -66,7 +66,7 @@ class PricePlans extends StatelessWidget {
             height: 40,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 Padding(
@@ -108,7 +108,7 @@ class PricePlans extends StatelessWidget {
             height: 15,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 Padding(
@@ -150,7 +150,7 @@ class PricePlans extends StatelessWidget {
             height: 15,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 Padding(

@@ -3,7 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 Future<String> uploadFileWithLoadingDialog(
-    context, Uint8List fileBytes, String bytes) async {
+    context, fileBytes, String bytes) async {
 
   // Show a loading dialog
   showDialog(
@@ -16,7 +16,7 @@ Future<String> uploadFileWithLoadingDialog(
   final ref = FirebaseStorage.instance.ref().child("${DateTime.now().millisecondsSinceEpoch}$bytes.jpg");
 
   // Upload the file to Firebase Storage
-  final uploadTask = ref.putData(fileBytes);
+  final uploadTask = ref.putFile(fileBytes);
 
   // Listen for upload progress (optional)
   /*

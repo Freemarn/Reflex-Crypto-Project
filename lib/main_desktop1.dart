@@ -43,7 +43,7 @@ class _MainDesktopState extends State<MainDesktop> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 70),
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -148,7 +148,7 @@ class _MainDesktopState extends State<MainDesktop> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 70),
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -511,7 +511,7 @@ class _MainDesktopState extends State<MainDesktop> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 30, horizontal: 85),
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
                   child: Container(
                       height: MediaQuery.of(context).size.height * 0.8,
                       decoration: const BoxDecoration(),
@@ -561,7 +561,7 @@ class _MainDesktopState extends State<MainDesktop> {
                                   const Image(
                                     image: AssetImage(
                                         'lib/assets/images/multiple.png'),
-                                    height: 200,
+                                    height: 170,
                                   )
                                 ],
                               ),
@@ -1171,7 +1171,7 @@ class _MainDesktopState extends State<MainDesktop> {
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.9,
+                  height: 800,
                   child: Column(
                     children: [
                       const Text(
@@ -1195,7 +1195,7 @@ class _MainDesktopState extends State<MainDesktop> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.26,
+                            height: 200,
                             width: MediaQuery.of(context).size.height * 0.45,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -1253,7 +1253,7 @@ class _MainDesktopState extends State<MainDesktop> {
                             width: MediaQuery.of(context).size.width * 0.015,
                           ),
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.26,
+                             height: 200,
                             width: MediaQuery.of(context).size.height * 0.45,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -1311,7 +1311,7 @@ class _MainDesktopState extends State<MainDesktop> {
                             width: MediaQuery.of(context).size.width * 0.015,
                           ),
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.26,
+                             height: 200,
                             width: MediaQuery.of(context).size.height * 0.45,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -1374,7 +1374,7 @@ class _MainDesktopState extends State<MainDesktop> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.26,
+                             height: 200,
                             width: MediaQuery.of(context).size.height * 0.45,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -1432,7 +1432,7 @@ class _MainDesktopState extends State<MainDesktop> {
                             width: MediaQuery.of(context).size.width * 0.015,
                           ),
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.26,
+                            height: 200,
                             width: MediaQuery.of(context).size.height * 0.45,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -1490,7 +1490,7 @@ class _MainDesktopState extends State<MainDesktop> {
                             width: MediaQuery.of(context).size.width * 0.015,
                           ),
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.26,
+                            height: 200,
                             width: MediaQuery.of(context).size.height * 0.45,
                             decoration: BoxDecoration(
                                 border: Border.all(
