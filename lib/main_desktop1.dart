@@ -51,7 +51,7 @@ class _MainDesktopState extends State<MainDesktop> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
-                                    'Invest In Leading \nDigital Assets on CryptoFlex\nAnd Accrue Profit.',
+                                    'Invest In Leading \nDigital Assets on EvianOptions\nAnd Accrue Profit.',
                                     style: TextStyle(
                                         fontSize: 50,
                                         color: Colors.white,
@@ -60,7 +60,7 @@ class _MainDesktopState extends State<MainDesktop> {
                                   Row(
                                     children: [
                                       const Text(
-                                        'Take Control Of Your Investment Portfolio Using\nCryptoFlex.',
+                                        'Take Control Of Your Investment Portfolio Using\nEvianOptions.',
                                         style: TextStyle(
                                           fontSize: 15,
                                           color: Colors.white,
@@ -81,7 +81,7 @@ class _MainDesktopState extends State<MainDesktop> {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const RegisterUser()));
+                                                      const RegisterUserHere()));
                                         },
                                         child: Container(
                                           width: 120,
@@ -231,14 +231,14 @@ class _MainDesktopState extends State<MainDesktop> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'Achieve major financial goals with CryptoFlex.',
+                        'Achieve major financial goals with EvianOptions.',
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: AppColors.headerTextColor),
                       ),
                       Text(
-                        'At CryptoFlex, we offer you.',
+                        'At EvianOptions, we offer you.',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.withOpacity(0.7),
@@ -285,7 +285,7 @@ class _MainDesktopState extends State<MainDesktop> {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
-                                        const RegisterUser()));
+                                        const RegisterUserHere()));
                               },
                               child: const Text(
                                 'Open Account',
@@ -316,7 +316,7 @@ class _MainDesktopState extends State<MainDesktop> {
                               fontWeight: FontWeight.w900),
                         ),
                         Text(
-                          'Take control of your financial assets with our state of the art CryptoFlex\nPlatform, providing advanced security and seamless management options.',
+                          'Take control of your financial assets with our state of the art EvianOptions\nPlatform, providing advanced security and seamless management options.',
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey.withOpacity(0.7),
@@ -495,7 +495,7 @@ class _MainDesktopState extends State<MainDesktop> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                      'No more worrying about the security of\nyour digital assets. with cryptoflex, growing\nyour investments is our goal.',
+                                      'No more worrying about the security of\nyour digital assets. with EvianOptions, growing\nyour investments is our goal.',
                                       style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.black.withOpacity(0.4),
@@ -548,7 +548,7 @@ class _MainDesktopState extends State<MainDesktop> {
                                         fontWeight: FontWeight.w900),
                                   ),
                                   Text(
-                                    'Our platform\'s investment encourages more than one payment system\nthe integration of a multi-payment system on CryptoFlex has made it\npossible for usersto invest from around the world using their preffered payment option.',
+                                    'Our platform\'s investment encourages more than one payment system\nthe integration of a multi-payment system on EvianOptions has made it\npossible for usersto invest from around the world using their preffered payment option.',
                                     style: TextStyle(
                                       fontSize: 15,
                                       color: Colors.grey.withOpacity(0.7),
@@ -1076,7 +1076,7 @@ class _MainDesktopState extends State<MainDesktop> {
                               fontWeight: FontWeight.w900),
                         ),
                         Text(
-                          'Discover the unique benefits of managing your crypto investments with CryptoFlex.',
+                          'Discover the unique benefits of managing your crypto investments with EvianOptions.',
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.grey.withOpacity(0.7),
@@ -1182,7 +1182,7 @@ class _MainDesktopState extends State<MainDesktop> {
                             fontWeight: FontWeight.w900),
                       ),
                       Text(
-                        'Don\'t just take our word for it - read what our happy client\'s have to say\n                    about their expereince with CryptoFlex.',
+                        'Don\'t just take our word for it - read what our happy client\'s have to say\n                    about their expereince with EvianOptions.',
                         style: TextStyle(
                             fontSize: 15,
                             color: Colors.grey.withOpacity(0.7),
@@ -1356,7 +1356,7 @@ class _MainDesktopState extends State<MainDesktop> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                      'No more worrying about the security of\nyour digital assets. with cryptoflex, growing\nyour investments is our goal.',
+                                      'No more worrying about the security of\nyour digital assets. with EvianOptions, growing\nyour investments is our goal.',
                                       style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.black.withOpacity(0.4),
@@ -1535,7 +1535,7 @@ class _MainDesktopState extends State<MainDesktop> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                      '"The seamless trading experience here\nat cryptoflex would be a game changer\nfor anyone."',
+                                      '"The seamless trading experience here\nat EvianOptions would be a game changer\nfor anyone."',
                                       style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.black.withOpacity(0.4),
@@ -1596,22 +1596,25 @@ class _MainDesktopState extends State<MainDesktop> {
               ],
             )),
             Positioned(
-              top: 435,
+              top: 350,
               
-              left: 100,
-              child: Container(
-                height: 50,
-                width: 50,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  
-                ),
-                child: FloatingActionButton(
-                  onPressed: () {},
-                  child: const Icon(
-                    Icons.whatshot,
-                    color: AppColors.cardTextColor,
-                    size: 50,
+              right: 60,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Container(
+                  height: 80,
+                  width: 80,
+                  decoration: const BoxDecoration(
+                   
+                
+                    
+                    
+                  ),
+                  child: FloatingActionButton(
+                    onPressed: () {},
+
+                    child: const Icon(Icons.chat, color: AppColors.mainColor,),
+                
                   ),
                 ),
               ),

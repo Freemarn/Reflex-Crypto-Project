@@ -70,7 +70,7 @@ class _FaqMobileState extends State<FaqMobile> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                child: Container(
+                child: SizedBox(
                     height: 1100,
                     child: Column(
                       children: [

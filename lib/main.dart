@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'CryptoFlex',
+      title: 'EvianOptions',
       initialRoute: '/',
       onGenerateRoute: (RouteSettings routeSettings) {
         return MaterialPageRoute<void>(
@@ -37,14 +37,14 @@ class MyApp extends StatelessWidget {
                 case DashboardPage.routeName:
                   return const DashboardPage();
                 default:
-                  return const MyHomePage(title: 'Crypto bomb');
+                  return const MyHomePage(title: 'EvianOptions');
               }
             });
       },
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Crypto bomb'),
+      home: const MyHomePage(title: 'EvianOptions'),
     );
   }
 }

@@ -4,11 +4,9 @@ import 'package:crypto_bomb/screens/register_page.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../utilis/app_dialog.dart';
 
 class LoginDesktop extends StatefulWidget {
@@ -24,7 +22,7 @@ class _LoginDesktopState extends State<LoginDesktop> {
   String _password = "";
 
   Future<void> _login(String email, String password) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
     try {
       showDialog(
         context: context,
@@ -32,7 +30,7 @@ class _LoginDesktopState extends State<LoginDesktop> {
         builder: (context) => const Center(child: CircularProgressIndicator()),
       );
 
-      await _auth.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -43,7 +41,7 @@ class _LoginDesktopState extends State<LoginDesktop> {
       // Handle error
       Navigator.pop(context);
       // ignore: use_build_context_synchronously
-      showErrorDialog(context, "login fail");
+      showErrorDialog(context,"Error", "login fail");
     }
   }
 
@@ -126,7 +124,7 @@ class _LoginDesktopState extends State<LoginDesktop> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const RegisterUser()));
+                                builder: (context) => const RegisterUserHere()));
                           },
                           child: Container(
                             height: 30,
@@ -223,7 +221,7 @@ class _LoginDesktopState extends State<LoginDesktop> {
                           color: AppColors.cardTextColor,
                         ),
                         Text(
-                          'Copyright 2023 cryptoflex All rights reserved',
+                          'Copyright 2023 EvianOptions All rights reserved',
                           style: TextStyle(
                               fontSize: 12, color: AppColors.cardTextColor),
                         )
@@ -238,4 +236,8 @@ class _LoginDesktopState extends State<LoginDesktop> {
       ),
     );
   }
+}
+
+class RegisterUser {
+  const RegisterUser();
 }

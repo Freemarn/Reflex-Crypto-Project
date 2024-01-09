@@ -16,9 +16,9 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, Constraints){
       if(Constraints.maxWidth > 870){
-        return DashPageDesktop();
+        return const DashPageDesktop();
       } else {
-        return DashPageMobile();
+        return const DashPageMobile();
       }
     }
     );

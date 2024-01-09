@@ -88,7 +88,7 @@ class _DepositMobileState extends State<DepositMobile> {
       await usersCollection.add({
         "uid": auth.currentUser!.uid,
         'message':
-            "You just deposited $amount\$ into your dashboard, contact your investment manager for more informatioon,\nthank you for choosing cryptoflex.",
+            "You just deposited $amount\$ into your dashboard, contact your investment manager for more informatioon,\nthank you for choosing EvianOptions.",
         "time": DateTime.now().toIso8601String(),
       });
       _editingController.clear();
@@ -96,12 +96,12 @@ class _DepositMobileState extends State<DepositMobile> {
     } on FirebaseAuthException catch (e) {
       // Navigator.pop(context);
       // ignore: use_build_context_synchronously
-      showErrorDialog(context as BuildContext, e.message ?? "");
+      showErrorDialog(context as BuildContext, e.message ?? "", '');
       // Handle Firebase authentication errors
       print("Error recording transaction: $e");
     } catch (e) {
       // Navigator.pop(context);
-      showErrorDialog(context as BuildContext, "Transaction failed");
+      showErrorDialog(context as BuildContext,"Error", "Transaction failed");
       // Handle other errors
       print("Error creating transaction: $e");
     }
@@ -374,7 +374,7 @@ class _DepositMobileState extends State<DepositMobile> {
                             const SizedBox(height: 10),
                             if (_selectedFiles != null)
                               Text(
-                                'File Name: ${receipt} ',
+                                'File Name: $receipt ',
                                // & File Size: ${_selectedFiles?.length} bytes
                                 style: const TextStyle(
                                     fontSize: 12, color: AppColors.cardTextColor),

@@ -32,7 +32,7 @@ class _FaqDesktopState extends State<FaqDesktop> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                child: Container(
+                child: SizedBox(
                     height: 700,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

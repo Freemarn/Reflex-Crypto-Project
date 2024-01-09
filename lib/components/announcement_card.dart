@@ -61,7 +61,7 @@ class _AnnouncementCardState extends State<AnnouncementCard> {
                     width: MediaQuery.of(context).size.width * 0.043,
                   ),
                   const Text(
-                    'CryptoFlex',
+                    'EvianOptions',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 13,

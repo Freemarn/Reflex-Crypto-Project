@@ -90,14 +90,14 @@ class _FooterDesktopState extends State<FooterDesktop> {
                   const Row(
                     children: [
                       Text(
-                        'Crypto',
+                        'Evian',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Flex',
+                        'Options',
                         style: TextStyle(
                             color: AppColors.mainColor,
                             fontSize: 20,

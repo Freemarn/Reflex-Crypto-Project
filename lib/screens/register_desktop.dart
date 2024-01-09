@@ -81,13 +81,13 @@ class _RegisterDesktopState extends State<RegisterDesktop> {
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       // ignore: use_build_context_synchronously
-      showErrorDialog(context, e.message ?? "");
+      showErrorDialog(context, e.message ?? "", 'Somrthing went wrong...');
       // Handle Firebase authentication errors
       print("Error creating user: $e");
     } catch (e) {
       // Handle other errors
       // ignore: use_build_context_synchronously
-      showErrorDialog(context, "Error creating user: $e");
+      showErrorDialog(context, "Error creating user: $e", 'Somrthing went wrong...');
       print("Error creating user: $e");
     }
   }
@@ -195,7 +195,7 @@ class _RegisterDesktopState extends State<RegisterDesktop> {
                       height: MediaQuery.of(context).size.height * 0.018,
                     ),
                     const Text(
-                      'welcome to cryptoflex!',
+                      'welcome to EvianOptions!',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -333,7 +333,7 @@ class _RegisterDesktopState extends State<RegisterDesktop> {
                           color: AppColors.cardTextColor,
                         ),
                         Text(
-                          'Copyright 2023 cryptoflex All rights reserved',
+                          'Copyright 2023 EvianOptions All rights reserved',
                           style: TextStyle(
                               fontSize: 12, color: AppColors.cardTextColor),
                         )

@@ -266,7 +266,7 @@ class _DashPageDesktopState extends State<DashPageDesktop> {
                           GestureDetector(
                             onTap: () {
                               FlutterClipboard.copy(
-                                'https://cryptoflex.com/xyz',
+                                'https://Evianoptions.com/xyz',
                               );
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -293,7 +293,7 @@ class _DashPageDesktopState extends State<DashPageDesktop> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'https://cryptoflex.com/xyz',
+                                      'https://Evianoptions.com/xyz',
                                       style: TextStyle(
                                         color: AppColors.headerTextColor
                                             .withOpacity(0.7),

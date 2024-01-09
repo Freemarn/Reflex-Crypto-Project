@@ -70,7 +70,7 @@ class _ContactMobileState extends State<ContactMobile> {
                       fontWeight: FontWeight.w900),
                 ).animate().fadeIn(duration: 600.ms).slideX(),
               ),
-              Container(
+              SizedBox(
                 height: 1000,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 80),

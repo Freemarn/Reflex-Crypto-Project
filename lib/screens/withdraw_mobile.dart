@@ -49,12 +49,12 @@ class _WithdrawMobileState extends State<WithdrawMobile> {
       EasyLoading.dismiss(); // hide loading indicator
     } on FirebaseAuthException catch (e) {
       EasyLoading.dismiss();
-      showErrorDialog(context, e.message ?? "");
+      showErrorDialog(context, e.message ?? "", 'Somrthing went wrong...');
       // Handle Firebase authentication errors
       print("Error creating withdrawal: $e");
     } catch (e) {
       EasyLoading.dismiss();
-      showErrorDialog(context, "Transaction failed");
+      showErrorDialog(context, "Transaction failed", 'Somrthing went wrong...');
       // Handle other errors
       print("Error creating withdrawal: $e");
     }
@@ -72,7 +72,7 @@ class _WithdrawMobileState extends State<WithdrawMobile> {
       await usersCollection.add({
         "uid": auth.currentUser!.uid,
         'message':
-            "You just withdraw $amount\$ into your dashboard, contact your investment manager for more informatioon,\nthank you for choosing cryptoflex.",
+            "You just withdraw $amount\$ into your dashboard, contact your investment manager for more informatioon,\nthank you for choosing EvianOptions.",
         "time": DateTime.now().toIso8601String(),
       });
       _editingController.clear();

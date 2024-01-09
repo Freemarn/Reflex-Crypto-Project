@@ -227,7 +227,7 @@ class _DashboardDesktopState extends State<DashboardDesktop> {
                           ),
                         ],
                       ),
-                      label: const Text('Deposit')),
+                      label: Text('Deposit')),
                   NavigationRailDestination(
                       icon: Row(
                         children: [

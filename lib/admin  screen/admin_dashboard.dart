@@ -289,7 +289,7 @@ class _AdminPanelState extends State<AdminPanel> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'CryptoFlex',
+                                  'EvianOptions',
                                   style: TextStyle(
                                       fontSize: 17,
                                       color: AppColors.headerTextColor,

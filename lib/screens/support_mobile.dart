@@ -68,7 +68,7 @@ class _SupportMobileState extends State<SupportMobile> {
                         const SizedBox(height: 10.0),
                         GestureDetector(
                           onTap: () {
-                            FlutterClipboard.copy('support@cryptoflex.com');
+                            FlutterClipboard.copy('support@Evianoptions.com');
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: const Text(
@@ -94,7 +94,7 @@ class _SupportMobileState extends State<SupportMobile> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'support@cryptoflex.com',
+                                    'support@Evianoptions.com',
                                     style: TextStyle(
                                       color: AppColors.headerTextColor
                                           .withOpacity(0.7),

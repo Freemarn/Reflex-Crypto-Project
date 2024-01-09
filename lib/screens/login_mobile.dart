@@ -24,7 +24,7 @@ class _LoginMobileState extends State<LoginMobile> {
   String _password = "";
 
   Future<void> _login(String email, String password) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
     try {
       showDialog(
         context: context,
@@ -32,7 +32,7 @@ class _LoginMobileState extends State<LoginMobile> {
         builder: (context) => const Center(child: CircularProgressIndicator()),
       );
 
-      await _auth.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -43,7 +43,7 @@ class _LoginMobileState extends State<LoginMobile> {
       // Handle error
       Navigator.pop(context);
       // ignore: use_build_context_synchronously
-      showErrorDialog(context, "login fail");
+      showErrorDialog(context, "Error", "login fail");
     }
   }
 
@@ -129,7 +129,7 @@ class _LoginMobileState extends State<LoginMobile> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const RegisterUser()));
+                                builder: (context) => const RegisterUserHere()));
                           },
                           child: Container(
                             height: 30,
@@ -226,7 +226,7 @@ class _LoginMobileState extends State<LoginMobile> {
                           color: AppColors.cardTextColor,
                         ),
                         Text(
-                          'Copyright 2023 cryptoflex All rights reserved',
+                          'Copyright 2023 EvianOptions All rights reserved',
                           style: TextStyle(
                               fontSize: 12, color: AppColors.cardTextColor),
                         )

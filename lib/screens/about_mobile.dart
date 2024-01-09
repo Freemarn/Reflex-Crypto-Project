@@ -38,14 +38,14 @@ class _AboutMobileState extends State<AboutMobile> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'crypto',
+              'Evian',
               style: TextStyle(
                   color: AppColors.headerTextColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              'Flex',
+              'Options',
               style: TextStyle(
                   color: AppColors.mainColor,
                   fontSize: 20,
@@ -101,7 +101,7 @@ class _AboutMobileState extends State<AboutMobile> {
                     ],
                   ),
                 )),
-            Container(
+            SizedBox(
                 height: 1100,
                 child: Padding(
                   padding:

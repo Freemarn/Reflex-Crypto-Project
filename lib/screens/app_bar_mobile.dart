@@ -9,14 +9,14 @@ return AppBar(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'crypto',
+            'Evian',
             style: TextStyle(
                 color: AppColors.headerTextColor,
                 fontSize: 20,
                 fontWeight: FontWeight.bold),
           ),
           Text(
-            'Flex',
+            'Options',
             style: TextStyle(
                 color: AppColors.mainColor,
                 fontSize: 20,

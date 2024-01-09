@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_bomb/components/announcement_card.dart';
 import 'package:crypto_bomb/utilis/app_colors.dart';
@@ -18,9 +16,9 @@ class _TransactionsPageState extends State<TransactionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _collectionReference = _firestore.collection("transactions");
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-                               
+    final collectionReference = _firestore.collection("transactions");
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
     return Scaffold(
         //backgroundColor: AppColors.sidebarTextColor.withOpacity(0.2),
         body: Padding(
@@ -65,7 +63,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                             height: MediaQuery.of(context).size.height * 0.06),
 
                         StreamBuilder(
-                            stream: _collectionReference.snapshots(),
+                            stream: collectionReference.snapshots(),
                             builder: (context, snapshot) {
                               if (snapshot.hasError) {
                                 return Text("Error: ${snapshot.error}");
@@ -75,8 +73,10 @@ class _TransactionsPageState extends State<TransactionsPage> {
                                 return const Center(
                                     child: CircularProgressIndicator());
                               }
-                              
-                              final documents = snapshot.data!.docs.where((doc) => doc["uid"] == _auth.currentUser?.uid);
+
+                              final documents = snapshot.data!.docs.where(
+                                  (doc) =>
+                                      doc["uid"] == auth.currentUser?.uid);
 
                               final announcements = documents.map((document) {
                                 return AnnouncementCard(
@@ -85,13 +85,14 @@ class _TransactionsPageState extends State<TransactionsPage> {
                               }).toList();
 
                               return ListView.builder(
-                                itemCount: announcements.length,
+                                  itemCount: announcements.length,
                                   itemBuilder: (context, index) {
-                                return announcements[index];
-                              });
+                                    return announcements[index];
+                                    
+                                  });
                             }),
 
-                        // const AnnouncementCard(),
+                        // const
                         // const AnnouncementCard(),
                         // const AnnouncementCard(),
                         // const AnnouncementCard(),

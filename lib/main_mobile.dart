@@ -42,14 +42,14 @@ class _MainMobileState extends State<MainMobile> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'crypto',
+              'Evian',
               style: TextStyle(
                   color: AppColors.headerTextColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              'Flex',
+              'Options',
               style: TextStyle(
                   color: AppColors.mainColor,
                   fontSize: 20,
@@ -83,14 +83,14 @@ class _MainMobileState extends State<MainMobile> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              'Invest In Leading \nDigital Assets on CryptoFlex\nAnd Accrue Profit.',
+                              'Invest In Leading \nDigital Assets on EvianOptions\nAnd Accrue Profit.',
                               style: TextStyle(
                                   fontSize: 30,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900),
                             ).animate().fadeIn(duration: 600.ms).slideX(),
                             const Text(
-                              'Take Control Of Your Investment Portfolio Using\nCryptoFlex.',
+                              'Take Control Of Your Investment Portfolio Using\nEvianOptions.',
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.white,
@@ -106,7 +106,7 @@ class _MainMobileState extends State<MainMobile> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const RegisterUser()));
+                                                const RegisterUserHere()));
                                   },
                                   child: Container(
                                     width: 120,
@@ -253,14 +253,14 @@ class _MainMobileState extends State<MainMobile> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'Achieve major financial goals with CryptoFlex.',
+                        'Achieve major financial goals with EvianOptions.',
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: AppColors.headerTextColor),
                       ),
                       Text(
-                        'At CryptoFlex, we offer you.',
+                        'At EvianOptions, we offer you.',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.withOpacity(0.7),
@@ -307,7 +307,7 @@ class _MainMobileState extends State<MainMobile> {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
-                                        const RegisterUser()));
+                                        const RegisterUserHere()));
                               },
                               child: const Text(
                                 'Open Account',
@@ -340,7 +340,7 @@ class _MainMobileState extends State<MainMobile> {
                             fontWeight: FontWeight.w900),
                       ),
                       Text(
-                        'Take control of your financial assets with our state of the art CryptoFlex\nPlatform, providing advanced security and seamless management options.',
+                        'Take control of your financial assets with our state of the art EvianOptions\nPlatform, providing advanced security and seamless management options.',
                         style: TextStyle(
                             fontSize: 15,
                             color: Colors.grey.withOpacity(0.7),
@@ -502,7 +502,7 @@ class _MainMobileState extends State<MainMobile> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                    'No more worrying about the security of\nyour digital assets. with cryptoflex, growing\nyour investments is our goal.',
+                                    'No more worrying about the security of\nyour digital assets. with EvianOptions, growing\nyour investments is our goal.',
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.black.withOpacity(0.4),
@@ -548,7 +548,7 @@ class _MainMobileState extends State<MainMobile> {
                                       fontWeight: FontWeight.w900),
                                 ),
                                 Text(
-                                  'Our platform\'s investment encourages more than one payment system.\nThe integration of a multi-payment system on CryptoFlex\nhas made it possible for users to invest from around\n the world using their preffered payment option.',
+                                  'Our platform\'s investment encourages more than one payment system.\nThe integration of a multi-payment system on EvianOptions\nhas made it possible for users to invest from around\n the world using their preffered payment option.',
                                   style: TextStyle(
                                     fontSize: 17,
                                     color: Colors.grey.withOpacity(0.7),
@@ -1025,7 +1025,7 @@ class _MainMobileState extends State<MainMobile> {
                             fontWeight: FontWeight.w900),
                       ),
                       Text(
-                        'Discover the unique benefits of managing your crypto investments with CryptoFlex.',
+                        'Discover the unique benefits of managing your crypto investments with EvianOptions.',
                         style: TextStyle(
                             fontSize: 15,
                             color: Colors.grey.withOpacity(0.7),
@@ -1116,7 +1116,7 @@ class _MainMobileState extends State<MainMobile> {
                           fontWeight: FontWeight.w900),
                     ),
                     Text(
-                      'Don\'t just take our word for it - read what our happy client\'s have to say\n                    about their expereince with CryptoFlex.',
+                      'Don\'t just take our word for it - read what our happy client\'s have to say\n                    about their expereince with EvianOptions.',
                       style: TextStyle(
                           fontSize: 15,
                           color: Colors.grey.withOpacity(0.7),
@@ -1274,7 +1274,7 @@ class _MainMobileState extends State<MainMobile> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                    'No more worrying about the security of\nyour digital assets. with cryptoflex, growing\nyour investments is our goal.',
+                                    'No more worrying about the security of\nyour digital assets. with EvianOptions, growing\nyour investments is our goal.',
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.black.withOpacity(0.4),
@@ -1444,21 +1444,18 @@ class _MainMobileState extends State<MainMobile> {
             ],
           )),
           Positioned(
-            top: 435,
-            left: 20,
-            child: Container(
-              height: 50,
-              width: 50,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-              ),
-              child: FloatingActionButton(
-                onPressed: () {},
-                child: const Icon(
-                  Icons.whatshot,
-                  color: AppColors.cardTextColor,
-                  size: 50,
-                ),
+            top: 350,
+            right: 60,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Container(
+                height: 80,
+                width: 80,
+                decoration: const BoxDecoration(),
+                child: FloatingActionButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.chat, color: AppColors.mainColor,),
+                    ),
               ),
             ),
           )
@@ -1467,7 +1464,6 @@ class _MainMobileState extends State<MainMobile> {
       drawer: Drawer(
         backgroundColor: Colors.black.withOpacity(0.4),
         child: Column(
-          
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100),
@@ -1475,7 +1471,9 @@ class _MainMobileState extends State<MainMobile> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 const SizedBox(height: 100,),
+                  const SizedBox(
+                    height: 100,
+                  ),
                   const Icon(
                     Icons.currency_bitcoin_rounded,
                     color: Colors.white,
@@ -1486,8 +1484,14 @@ class _MainMobileState extends State<MainMobile> {
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.home, color: Colors.white, size: 14,),
-                      const SizedBox(width: 5,),
+                      const Icon(
+                        Icons.home,
+                        color: Colors.white,
+                        size: 14,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -1507,8 +1511,14 @@ class _MainMobileState extends State<MainMobile> {
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.people, color: Colors.white, size: 14,),
-                      const SizedBox(width: 5,),
+                      const Icon(
+                        Icons.people,
+                        color: Colors.white,
+                        size: 14,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -1526,12 +1536,18 @@ class _MainMobileState extends State<MainMobile> {
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.interests, color: Colors.white, size: 14,),
-                      const SizedBox(width: 5,),
+                      const Icon(
+                        Icons.interests,
+                        color: Colors.white,
+                        size: 14,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => const Faqs()));
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const Faqs()));
                         },
                         child: const Text(
                           'FAQs',
@@ -1545,8 +1561,14 @@ class _MainMobileState extends State<MainMobile> {
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.phone, color: Colors.white, size: 14,),
-                      const SizedBox(width: 5,),
+                      const Icon(
+                        Icons.phone,
+                        color: Colors.white,
+                        size: 14,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(

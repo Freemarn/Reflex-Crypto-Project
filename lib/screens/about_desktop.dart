@@ -67,7 +67,7 @@ class AboutDesktop extends StatelessWidget {
                     ],
                   ),
                 )),
-            Container(
+            SizedBox(
                 height: 600,
                 child: Padding(
                   padding:
@@ -88,7 +88,7 @@ class AboutDesktop extends StatelessWidget {
                                     fontWeight: FontWeight.w900),
                               ),
                               Text(
-                                'We have unlocked a new dimension in our crypto journey with all of our\nAchievements, cryptoflex is the ultimate platform for recognizing and celebrating\n your milestones in the world of digital assets. Whether you\'re a seasoned trader, a blockchain\n enthusiast, or just starting your crypto adventure, Cryptoflexturns your accomplishments\n into badges of honor.',
+                                'We have unlocked a new dimension in our crypto journey with all of our\nAchievements, Evianoptions is the ultimate platform for recognizing and celebrating\n your milestones in the world of digital assets. Whether you\'re a seasoned trader, a blockchain\n enthusiast, or just starting your crypto adventure, Cryptoflexturns your accomplishments\n into badges of honor.',
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.grey.withOpacity(0.7),
