@@ -131,6 +131,9 @@ class _MainDesktopState extends State<MainDesktop> {
                                   ).animate().fadeIn(duration: 600.ms).slideX(),
                                 ],
                               ),
+
+                              
+                              
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
