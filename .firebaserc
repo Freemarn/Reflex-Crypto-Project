@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "crypto-flex-47dcc"
-  }
+    "default": "crypto-flex-47dcc",
+    "cb": "crypto-flex-47dcc"
+  },
+  "targets": {},
+  "etags": {}
 }
