@@ -8,23 +8,23 @@ class ContainerText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.2,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.08,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                        width: 1, color: AppColors.cardTextColor.withOpacity(0.2)),
-                                  ),
-                                  child: Center(
-                                      child: Text(
-                                    containerText,
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        color: AppColors.headerTextColor,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                                );
+      width: 110,
+      height: 55,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+            width: 1, color: AppColors.cardTextColor.withOpacity(0.2)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+                containerText,
+                style: const TextStyle(
+          fontSize: 14,
+          color: AppColors.headerTextColor,
+          fontWeight: FontWeight.w600),
+              ),
+      ),
+    );
   }
 }

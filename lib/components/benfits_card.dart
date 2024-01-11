@@ -15,11 +15,8 @@ class BenefitCard extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.04,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.028,
+                                      height: 30,
+                                      width: 30,
                                       decoration: BoxDecoration(
                                           color: AppColors.mainColor
                                               .withOpacity(0.7),
