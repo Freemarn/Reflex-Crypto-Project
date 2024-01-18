@@ -5,6 +5,7 @@ import 'package:crypto_bomb/main_mobile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:intercom_flutter/intercom_flutter.dart';
 
 import 'screens/dashboard_page.dart';
 
@@ -14,6 +15,10 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   EasyLoading.init();
+
+  // Call initialize directly
+  await Intercom.instance.initialize('acbsh47d');
+
   runApp(const MyApp());
 }
 

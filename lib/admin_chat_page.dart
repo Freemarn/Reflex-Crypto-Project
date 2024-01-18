@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_tawk/flutter_tawk.dart';
+import 'package:intercom_flutter/intercom_flutter.dart';
 
 class AdminChat extends StatelessWidget {
   const AdminChat({Key? key}) : super(key: key);
@@ -15,21 +14,12 @@ class AdminChat extends StatelessWidget {
           backgroundColor: const Color(0XFFF7931E),
           elevation: 0,
         ),
-        body: Tawk(
-          directChatLink:
-              'https://tawk.to/chat/659f14e70ff6374032bea544/1hjqmjaj2',
-          visitor: TawkVisitor(
-            name: 'Josh lee',
-            email: 'josh@gmail.com',
-          ),
-          onLoad: () {
-            print('Hello Tawk!');
-          },
-          onLinkTap: (String url) {
-            print(url);
-          },
-          placeholder: const Center(
-            child: Text('Loading...'),
+        body: Center(
+          child: TextButton(
+            child: Text('Open Intercom'),
+            onPressed: () async {
+              await Intercom.instance.displayMessenger();
+            },
           ),
         ),
       ),
